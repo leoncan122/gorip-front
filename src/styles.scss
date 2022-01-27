@@ -1,0 +1,25 @@
+@use "prueba";
+@import "prueba";
+/* You can add global styles to this file, and also import other style files */
+$font-stack: normal normal bold 15px Helvetica, sans-serif;
+$bgr-color: black;
+body {
+  font: $font-stack;
+  color: white;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100px;
+  display: grid;
+}
+.app-nav {
+  @extend %nav;
+}
+.app-footer {
+  @include borderLiner($borderSize: 5px);
+  margin: 10px;
+}
+.app-map {
+  @extend %map;
+}

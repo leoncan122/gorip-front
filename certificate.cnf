@@ -1,0 +1,20 @@
+[ req ]
+default_bits=2048
+default_md=sha256
+x509_extensions=v3_req
+prompt = no
+distinguished_name = req_distinguished_name
+
+[ req_distinguished_name ]
+C = ES
+ST = Salamanca
+L = Castilla y Leon
+O = Localhost Org
+OU = Localhost Org Unit
+CN = localhost
+emailAddress =leon.can122@gmail.com
+
+[v3_req]
+subjectAltName=@alt_names
+[alt_names]
+DNS.1=localhost

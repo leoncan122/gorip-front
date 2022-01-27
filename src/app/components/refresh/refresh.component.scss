@@ -1,0 +1,5 @@
+@import "../../../prueba.scss";
+
+.nav__button {
+  @extend %primary_btn;
+}

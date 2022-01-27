@@ -1,0 +1,18 @@
+#container-spot {
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.412);
+  position: fixed;
+  color: red;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+#spot-information {
+  height: 25%;
+  background-color: black;
+  display: grid;
+}

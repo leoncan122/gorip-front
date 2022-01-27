@@ -1,0 +1,8 @@
+<section *ngIf="spotObject$" id="container-spot">
+  <div id="spot-information">
+    <p>distancia</p>
+    {{ spotObject$.address }}
+    <button (click)="clearSpotObject()">back</button>
+  </div>
+  <p>Foto</p>
+</section>

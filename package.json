@@ -10,8 +10,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "preinstall": "npm i -g @angular/cli && npm i @angular-devkit@12.2.0"
+    "test": "ng test"
   },
   "private": true,
   "dependencies": {

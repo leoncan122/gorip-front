@@ -9,7 +9,8 @@
     "start": "ng serve",
     "build": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "preinstall": "npm install  @angular/cli"
   },
   "private": true,
   "dependencies": {

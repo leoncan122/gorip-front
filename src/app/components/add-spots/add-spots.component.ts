@@ -72,7 +72,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
     this.showForm = false;
   }
   ngOnDestroy() {
-    this.onDestroy$.next();
+    //this.onDestroy$.next();
   }
   ngOnInit(): void {}
 }

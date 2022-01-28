@@ -2,8 +2,8 @@
   "name": "gorip-app",
   "version": "0.0.0",
   "engines": {
-    "node": "14.15.0",
-    "npm": "6.14.11"
+    "node": "16.10.0",
+    "npm": "7.24.0"
   },
   "scripts": {
     "ng": "ng",

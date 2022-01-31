@@ -8,11 +8,13 @@ function requireHTTPS(req, res, next) {
 const express = require("express");
 const app = express();
 
-app.use(requireHTTPS);
+//app.use(requireHTTPS);
 
-app.use(express.static("./dist/$<name-on-package.json>"));
+app.use(express.static(__dirname + "/dist/frontend"));
 app.get("/*", function (req, res) {
-  res.sendFile("index.html", { root: "dist/<name-on-package.json>/" });
+  res.sendFile("index.html", { root: __dirname + "/dist/frontend/" });
 });
 
-app.listen(8080);
+app.listen(8080, () => {
+  console.log("the server is running");
+});

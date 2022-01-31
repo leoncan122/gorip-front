@@ -15,6 +15,6 @@ app.get("/*", function (req, res) {
   res.sendFile("index.html", { root: __dirname + "/dist/frontend/" });
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT || 8080, () => {
   console.log("the server is running");
 });

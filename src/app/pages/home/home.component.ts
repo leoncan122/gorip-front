@@ -15,6 +15,7 @@ import { RootState } from 'src/app/store/store';
 export class HomeComponent implements OnInit {
   public x: number[] = [0, 0];
   public postalCode: Observable<string>;
+  public text: number[] = [];
   constructor(
     private store: Store<RootState>,
     private spotService: SpotsService
@@ -29,8 +30,10 @@ export class HomeComponent implements OnInit {
     );
   }
   public watchPosition() {
-    navigator.geolocation.watchPosition((position) => {
-      console.log(position);
+    navigator.geolocation.watchPosition(({ coords }) => {
+      console.log(coords);
+      this.text.push(coords.latitude);
+
       // coords({
       //   coord: [position.coords.latitude, position.coords.longitude],
       // });

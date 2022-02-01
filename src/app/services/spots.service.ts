@@ -4,16 +4,13 @@ import { Observable } from 'rxjs';
 import { Spot } from '../../models/spot';
 import { environment } from '@env/environment';
 import { Store } from '@ngrx/store';
-import { localizationState } from '../store/localization/localization.state';
 import { RootState } from '../store/store';
 import { info, information } from '../store/localization/localization.action';
 import {
   selectAddressInfo,
   selectCoordinates,
-  selectLocalizationFeature,
 } from '../store/localization/localization.selectors';
 import { Spots } from '../store/spot/spot.state';
-import { setSpots } from '../store/spot/spot.action';
 export interface Result {
   lat: number;
   long: number;
@@ -26,12 +23,9 @@ export class SpotsService {
   url = 'http://localhost:4000/api/spots';
   result: Result;
 
-  //public locState$: Observable<localizationState>;
-  // public myCoords: number[];
   public addressInfo: info;
 
   constructor(private http: HttpClient, private store: Store<RootState>) {
-    //this.locState$ = this.store.select(selectLocalizationFeature);
     this.store.select(selectCoordinates).subscribe((data) => {
       this.coordToAddress(data[1], data[0]);
     });

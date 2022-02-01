@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Observable, Observer } from 'rxjs';
 import { io } from 'socket.io-client';
-import { RootState } from '../store/store';
 
 @Injectable({
   providedIn: 'root',
@@ -10,4 +9,15 @@ export class SocketService {
   public socket = io('http://localhost:4000');
 
   constructor() {}
+  public emitPosition(position: number[]) {
+    this.socket.emit('position', position);
+  }
+  public receiveUsersPosition(): any {
+    let observable = new Observable((observer) => {
+      this.socket.on('sharingPosition', (otherUser) => {
+        observer.next(otherUser);
+      });
+    });
+    return observable;
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { coords } from 'src/app/store/localization/localization.action';
+import { updateCoordinates } from 'src/app/store/localization/localization.action';
 import { RootState } from 'src/app/store/store';
 
 @Component({
@@ -14,7 +14,9 @@ export class RefreshComponent implements OnInit {
   public refreshCoords() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.store.dispatch(
-        coords({ coord: [position.coords.latitude, position.coords.longitude] })
+        updateCoordinates({
+          coord: [position.coords.latitude, position.coords.longitude],
+        })
       );
     });
   }

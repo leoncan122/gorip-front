@@ -2,6 +2,10 @@
   <div id="spot-information">
     <p>distancia</p>
     {{ spotObject$.address }}
+
+    <ul *ngFor="let item of peopleInSpot">
+      <li>{{ item }}</li>
+    </ul>
     <button (click)="clearSpotObject()">back</button>
   </div>
   <p>Foto</p>

@@ -6,7 +6,7 @@ export interface info {
 }
 export const localization = createAction('[Start] Mapping');
 
-export const coords = createAction(
+export const updateCoordinates = createAction(
   '[Coords] Mapping',
   props<{ coord: number[] }>()
 );

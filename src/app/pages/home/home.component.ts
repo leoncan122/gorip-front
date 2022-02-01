@@ -30,9 +30,10 @@ export class HomeComponent implements OnInit {
   }
   public watchPosition() {
     navigator.geolocation.watchPosition((position) => {
-      coords({
-        coord: [position.coords.latitude, position.coords.longitude],
-      });
+      console.log(position);
+      // coords({
+      //   coord: [position.coords.latitude, position.coords.longitude],
+      // });
     });
   }
 
@@ -42,7 +43,7 @@ export class HomeComponent implements OnInit {
       this.store.dispatch(
         coords({
           coord: [position.coords.latitude, position.coords.longitude],
-          })
+        })
       );
     });
     this.watchPosition();

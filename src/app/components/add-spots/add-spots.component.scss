@@ -1,9 +1,30 @@
-@import "../../../prueba.scss";
-@import "../nav/nav.component.scss";
-
-.nav__button {
-  @extend %primary_btn;
-  &:hover {
-    @extend %hoverButton;
+.form_container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000ab;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    height: 60vh;
+    justify-content: space-between;
+    & > input {
+      width: 70%;
+      height: 40px;
+      border-radius: 5px;
+    }
+    & > label {
+      margin-top: 5px;
+    }
   }
 }

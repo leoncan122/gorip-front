@@ -1,40 +1,47 @@
-<button class="nav__button" (click)="getFormInfo()">Add spot</button>
+<!-- <button class="nav__button" (click)="getFormInfo()">Add spot</button> -->
 
-<div *ngIf="showForm">
+<div class="form_container" *ngIf="showForm">
   <form
     #myForm="ngForm"
     [formGroup]="form"
     (ngSubmit)="onSubmit(); resetForm()"
   >
+    <label for="address">Address:</label>
     <input
       name="address"
       formControlName="address"
       [(ngModel)]="addressInfo.address"
+      readonly
     />
+    <label for="postalCode">Postal Code:</label>
     <input
       name="postalCode"
       formControlName="postal_code"
       [ngModel]="addressInfo.pc"
+      readonly
     />
-
-    <select class="form-control" formControlName="type">
+    <label for="type">Select type of spot</label>
+    <select class="form-control" formControlName="type" name="type">
       <option value="handrail">handrail</option>
       <option value="ledge">ledge</option>
       <option value="stairs">stairs</option>
       <option value="skatepark">skatepark</option>
       <option value="flatbar">flatbar</option>
     </select>
+
+    <label for="description">Description</label>
     <input
       type="text"
+      name="description"
       placeholder="description"
       formControlName="description"
     />
+
+    <label for="photo">Upload photo</label>
+    <form name="photo" type="POST" enctype="multipart/formdata">
+      <input type="file" name="imagen" />
+    </form>
     <button type="submit" [disabled]="!form.valid">create</button>
     <button (click)="resetForm()">back</button>
   </form>
-  <!-- <form name="subida-imagenes" type="POST" enctype="multipart/formdata" >
-        <input type="file" name="imagen" />
-    </form> -->
 </div>
-
-<p>{{ errorAddSpot$ | async }}</p>

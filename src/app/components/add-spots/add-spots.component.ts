@@ -1,12 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SpotsService } from 'src/app/services/spots.service';
 import { Store } from '@ngrx/store';
 import { info } from 'src/app/store/localization/localization.action';
-import {
-  localizationState,
-  localizationState as State,
-} from 'src/app/store/localization/localization.state';
+
 import { Observable, Subject } from 'rxjs';
 import { RootState } from 'src/app/store/store';
 import { addSpot } from 'src/app/store/spot/spot.action';
@@ -74,5 +70,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     //this.onDestroy$.next();
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getFormInfo();
+  }
 }

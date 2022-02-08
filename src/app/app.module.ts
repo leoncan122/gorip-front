@@ -21,6 +21,8 @@ import { RefreshComponent } from './components/refresh/refresh.component';
 import { SpotEffects } from './store/spot/spot.effects';
 import { SpotContainerComponent } from './spot-container/spot-container.component';
 import { AuthEffects } from './store/auth/auth.effects';
+import { DinamicDirective } from './dinamic.directive';
+import { AddSpotBtnComponent } from './components/add-spot-btn/add-spot-btn.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,10 @@ import { AuthEffects } from './store/auth/auth.effects';
     HomeComponent,
     RefreshComponent,
     SpotContainerComponent,
+    DinamicDirective,
+    AddSpotBtnComponent,
   ],
+  entryComponents: [SpotContainerComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

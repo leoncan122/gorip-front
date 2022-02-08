@@ -24,12 +24,11 @@ export class SpotContainerComponent implements OnInit {
     this.store.dispatch(selectSpotById({ id: 0 }));
   }
   public usersInSpot(): void {
-    //this.spotObject$ = {...this.spotObject$, onPlace: [...onPlace,]};
-    this.socketService
+    this.sub = this.socketService
       .receiveUsersPosition()
-      .subscribe((data: any) => console.log(data));
-    // console.log(user);
-    // this.peopleInSpot.push(user);
+      .subscribe((data: any) => {
+        this.peopleInSpot.push(data.id);
+      });
   }
 
   constructor(
@@ -42,10 +41,6 @@ export class SpotContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sub = this.socketService
-      .receiveUsersPosition()
-      .subscribe((data: any) => {
-        console.log(data);
-      });
+    this.usersInSpot();
   }
 }

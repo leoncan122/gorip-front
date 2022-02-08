@@ -1,0 +1,9 @@
+@import "../../../prueba.scss";
+@import "../nav/nav.component.scss";
+
+.nav__button {
+  @extend %primary_btn;
+  &:hover {
+    @extend %hoverButton;
+  }
+}

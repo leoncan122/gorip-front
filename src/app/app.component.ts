@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
 import { Spot } from 'src/models/spot';
 import { SocketService } from './services/socket.service';
 import { updateCoordinates } from './store/localization/localization.action';
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit {
   title = 'frontend';
   availableSpots: Observable<Spot[]>;
   currentLocation: Observable<number[]>;
-  public array: any = [];
 
   constructor(
     private store: Store<RootState>,
@@ -28,6 +26,7 @@ export class AppComponent implements OnInit {
       (state) => state.localization.localization
     );
   }
+
   public watchPosition() {
     navigator.geolocation.watchPosition(({ coords }) => {
       if ((coords.latitude, coords.longitude)) {

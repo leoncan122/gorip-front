@@ -6,7 +6,7 @@ import { io } from 'socket.io-client';
   providedIn: 'root',
 })
 export class SocketService {
-  public socket = io('https://gorip-back.herokuapp.com/');
+  public socket = io('http://gorip-back.herokuapp.com/');
 
   constructor() {}
   public emitPosition(position: number[]) {

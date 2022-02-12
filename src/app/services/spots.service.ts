@@ -20,7 +20,7 @@ export interface Result {
   providedIn: 'root',
 })
 export class SpotsService {
-  url = 'http://localhost:4000/api/spots';
+  url = 'https://gorip-back.herokuapp.com/api/spots';
   result: Result;
 
   public addressInfo: info;

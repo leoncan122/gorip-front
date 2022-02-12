@@ -6,8 +6,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoginService {
-  private loginURL: string = 'http://localhost:4000/api/user/login';
-  private signupURL: string = 'http://localhost:4000/api/user/signup';
+  private loginURL: string = 'https://gorip-back.herokuapp.com/api/user/login';
+  private signupURL: string =
+    'https://gorip-back.herokuapp.com/api/user/signup';
 
   constructor(private http: HttpClient) {}
 
@@ -18,6 +19,9 @@ export class LoginService {
     return this.http.post<{}>(this.signupURL, body);
   }
   public testToken(body: {}): Observable<any> {
-    return this.http.get<any>('http://localhost:4000/api/spots/token', body);
+    return this.http.get<any>(
+      'https://gorip-back.herokuapp.com/api/spots/token',
+      body
+    );
   }
 }

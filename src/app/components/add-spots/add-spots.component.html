@@ -6,14 +6,14 @@
     [formGroup]="form"
     (ngSubmit)="onSubmit(); resetForm()"
   >
-    <label for="address">Address:</label>
+    <label for="address">Address</label>
     <input
       name="address"
       formControlName="address"
       [(ngModel)]="addressInfo.address"
       readonly
     />
-    <label for="postalCode">Postal Code:</label>
+    <label for="postalCode">Postal Code</label>
     <input
       name="postalCode"
       formControlName="postal_code"

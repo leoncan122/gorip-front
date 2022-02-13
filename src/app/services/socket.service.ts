@@ -6,15 +6,15 @@ import { io } from 'socket.io-client';
   providedIn: 'root',
 })
 export class SocketService {
-  public url: string = this.apiDomain();
-  public socket = io(this.url);
+  // public url: string = this.apiDomain();
+  public socket = io('https://gorip-back.herokuapp.com');
 
   constructor() {}
-  public apiDomain() {
-    const production = process.env.NODE_ENV === 'production';
-    console.log(production);
-    return production ? 'https://gorip-back.herokuapp.com' : 'localhost:8080';
-  }
+  // public apiDomain() {
+  //   const production = process.env.NODE_ENV === 'production';
+  //   console.log(production);
+  //   return production ? 'https://gorip-back.herokuapp.com' : 'localhost:8080';
+  // }
   public emitPosition(position: number[]) {
     this.socket.emit('position', position);
   }

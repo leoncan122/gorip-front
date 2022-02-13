@@ -14,7 +14,7 @@ app.use(express.static(__dirname + "/dist/frontend"));
 app.get("/*", function (req, res) {
   res.sendFile("index.html", { root: __dirname + "/dist/frontend/" });
 });
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4200;
 app.listen(PORT, () => {
   console.log("the server is running on port:" + PORT);
 });

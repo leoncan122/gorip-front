@@ -20,7 +20,7 @@ export class LoginService {
   }
   public testToken(body: {}): Observable<any> {
     return this.http.get<any>(
-      'https://gorip-back.herokuapp.com/api/spots/token',
+      'https://gorip-back.herokuapp.com/api/user/token',
       body
     );
   }

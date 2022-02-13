@@ -6,9 +6,14 @@ import { io } from 'socket.io-client';
   providedIn: 'root',
 })
 export class SocketService {
-  public socket = io('http://gorip-back.herokuapp.com/');
+  public url: string = this.apiDomain();
+  public socket = io(this.url);
 
   constructor() {}
+  public apiDomain() {
+    const production = process.env.NODE_ENV === 'production';
+    return production ? 'https://gorip-back.herokuapp.com' : 'localhost:8080';
+  }
   public emitPosition(position: number[]) {
     this.socket.emit('position', position);
   }

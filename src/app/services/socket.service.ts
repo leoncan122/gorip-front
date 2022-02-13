@@ -12,6 +12,7 @@ export class SocketService {
   constructor() {}
   public apiDomain() {
     const production = process.env.NODE_ENV === 'production';
+    console.log(production);
     return production ? 'https://gorip-back.herokuapp.com' : 'localhost:8080';
   }
   public emitPosition(position: number[]) {

@@ -27,7 +27,9 @@ export class SpotContainerComponent implements OnInit {
     this.sub = this.socketService
       .receiveUsersPosition()
       .subscribe((data: any) => {
-        this.peopleInSpot.push(data.id);
+        if (!this.peopleInSpot.includes(data.id)) {
+          this.peopleInSpot.push(data.id);
+        }
       });
   }
 

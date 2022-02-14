@@ -1,10 +1,12 @@
 const https = require("https");
+const http = require("http");
 const express = require("express");
 const fs = require("fs");
-const app = express();
-const httpsOptions = {
-  cert: fs.readFileSync(__dirname + "/cloudfare.pem"),
+const options = {
+  key: fs.readFileSync(__dirname + "/cloudfare.key"),
+  cert: fs.readFileSync(__dirname + "/cloudfare.crt"),
 };
+const app = express();
 
 //app.use(requireHTTPS);
 // function requireHTTPS(req, res, next) {
@@ -19,7 +21,14 @@ app.use(express.static(__dirname + "/dist/frontend"));
 app.get("/*", function (req, res) {
   res.sendFile("index.html", { root: __dirname + "/dist/frontend/" });
 });
+
+// var httpServer = http.createServer(app);
+// var httpsServer = https.createServer(options, app);
+//options var are not recognized
 const PORT = process.env.PORT || 4200;
-https.createServer(httpsOptions, app).listen(PORT, () => {
+app.listen(PORT, () => {
   console.log("the server is running on port:" + PORT);
 });
+// httpServer.listen(4200, () => {
+//   console.log("the server is running on port:" + 4200);
+// });

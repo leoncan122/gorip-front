@@ -3,6 +3,7 @@
 .key
 .crt
 .cnf
+.pem
 # compiled output
 #/dist
 /tmp

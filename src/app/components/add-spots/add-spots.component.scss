@@ -11,12 +11,14 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  form {
+  form:first-child {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
     height: 60vh;
+    border: 3px solid white;
+    box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
     justify-content: space-between;
     & > input {
       width: 70%;

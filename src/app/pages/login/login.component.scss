@@ -1,12 +1,72 @@
 .login-container {
-  background: url("../../../assets/New\ document\ 1.2021_12_28_18_51_33.0.svg"),
-    radial-gradient(
-      circle,
-      rgba(24, 76, 116, 0.716) 0%,
-      rgb(255, 254, 254) 100%
-    );
-  height: 100vh;
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(0, 0, 0, 0.716) 0%,
+  //   rgb(0, 0, 0) 100%
+  // );
+  background: radial-gradient(circle, rgb(0 0 0 / 93%) 0%, #ff6800 100%);
+  height: 90vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  // grid-template-rows: 0.3fr 1fr;
+  & p {
+    text-align: center;
+  }
+}
+header {
+  font-size: 99px;
+  text-align: center;
+  color: black;
+  text-shadow: 0.03em 0.03em 0 black;
+}
+.form__container {
+  display: grid;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 30vh;
+  padding: 3%;
+  border: 3px solid white;
+  box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
+  justify-content: space-evenly;
+  justify-self: center;
+  & > input {
+    width: 70%;
+    height: 40px;
+    border-radius: 5px;
+  }
+}
+header:after {
+  content: "GoRip";
+  position: absolute;
+  left: 0.52em;
+  // top: 1.69em;
+  // text-shadow: none;
+  background-image: linear-gradient(
+    45deg,
+    transparent 45%,
+    #ebe9e0 45%,
+    #fff500 55%,
+    transparent 0
+  );
+  background-size: 0.05em 0.05em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: shad-anim 7s ease infinite;
+}
+
+@keyframes shad-anim {
+  0% {
+    background-position: 0 0;
+  }
+  0% {
+    background-position: 100% -100%;
+  }
 }

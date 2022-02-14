@@ -5,4 +5,11 @@
   <button routerLink="/login" class="nav__button">login</button>
   <app-add-spot-btn></app-add-spot-btn>
   <app-refresh></app-refresh>
+
+  <button
+    *ngIf="(userSubscription$ | async)?.authenticated"
+    class="nav__button"
+  >
+    Me
+  </button>
 </div>

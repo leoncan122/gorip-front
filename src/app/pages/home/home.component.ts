@@ -10,6 +10,7 @@ import { Observable } from 'rxjs';
 import { DinamicDirective } from 'src/app/dinamic.directive';
 import { SpotsService } from 'src/app/services/spots.service';
 import { SpotContainerComponent } from 'src/app/spot-container/spot-container.component';
+import { userState } from 'src/app/store/auth/auth.state';
 import { updateCoordinates } from 'src/app/store/localization/localization.action';
 import { localizationState } from 'src/app/store/localization/localization.state';
 import { setSpots } from 'src/app/store/spot/spot.action';

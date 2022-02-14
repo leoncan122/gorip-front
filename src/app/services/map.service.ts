@@ -34,7 +34,7 @@ export class MapService {
           container: 'mapa-box',
           style: 'mapbox://styles/mapbox/streets-v11',
           center: [lat, long],
-          zoom: 11.15,
+          zoom: 13.15,
         });
         resolve({
           map: this.map,

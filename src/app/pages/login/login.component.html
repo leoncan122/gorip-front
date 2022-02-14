@@ -1,13 +1,18 @@
 <section>
   <div class="login-container">
-    <div>
+    <header>GoRip</header>
+
+    <div class="form__container">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <input type="text" formControlName="email" />
         <input type="text" formControlName="password" />
         <button type="submit" [disabled]="!loginForm.valid">login</button>
         <label *ngIf="error">{{ error }}</label>
       </form>
-      <p>{{ authenticated }}</p>
+      <p>
+        Already not have an account?
+        <span routerLink="/signup">Sign Up</span>
+      </p>
       <button (click)="testToken()">Send Token</button>
     </div>
   </div>

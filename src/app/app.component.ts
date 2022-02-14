@@ -39,6 +39,5 @@ export class AppComponent implements OnInit {
   }
   ngOnInit() {
     this.watchPosition();
-    this.socketService.receiveUsersPosition();
   }
 }

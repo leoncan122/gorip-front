@@ -57,6 +57,7 @@ export class SpotsService {
             info: {
               pc: data?.features[1].text,
               address: data?.features[0].place_name,
+              city: data?.features[0].place_name.split(',')[2],
             },
           })
         );

@@ -21,9 +21,14 @@ export class MapService {
   public lat: number;
   public long: number;
   public spotsFromStore$: Observable<Spots>;
+  public localization$: Observable<number[]>;
 
   constructor(private store: Store<RootState>) {
     this.spotsFromStore$ = this.store.select((state) => state.spots.entities);
+    this.store.select((state) => {
+      this.lat = state.localization.localization[1];
+      this.long = state.localization.localization[0];
+    });
   }
 
   buildMap(long: number, lat: number): Promise<any> {

@@ -18,6 +18,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   public addressInfo: info = {
     pc: '',
     address: '',
+    city: '',
   };
   public errorAddSpot$: Observable<boolean>;
   public showForm = false;
@@ -27,6 +28,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   public form = new FormGroup({
     address: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
+    // city: new FormControl,
     postal_code: new FormControl('', [Validators.required]),
     description: new FormControl('', [
       Validators.required,
@@ -44,6 +46,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
           this.lngLat$ = data.localization;
           this.addressInfo.pc = data.whereami.pc;
           this.addressInfo.address = data.whereami.address;
+          this.addressInfo.city = data.whereami.city;
         },
         (err) => console.log(err)
       );
@@ -54,6 +57,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
     this.showForm = true;
     // this function fill the addspot form
     try {
+      this.form.addControl('city', new FormControl(this.addressInfo.city));
       this.form.addControl('lat', new FormControl(this.lngLat$[1]));
       this.form.addControl('long', new FormControl(this.lngLat$[0]));
     } catch (error) {

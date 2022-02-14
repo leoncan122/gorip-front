@@ -3,6 +3,7 @@ import { createAction, props } from '@ngrx/store';
 export interface info {
   pc: string;
   address: string;
+  city: string;
 }
 export const localization = createAction('[Start] Mapping');
 

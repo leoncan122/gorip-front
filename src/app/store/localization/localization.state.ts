@@ -9,5 +9,6 @@ export const init: localizationState = {
   whereami: {
     pc: '',
     address: '',
+    city: '',
   },
 };

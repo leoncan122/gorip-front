@@ -32,7 +32,7 @@ export class SpotEffects {
       ofType(spotActions.setSpots),
       exhaustMap((action) =>
         this.spotService
-          .getSpotsAroundMe(action.pc)
+          .getSpotsAroundMe(action.city)
           .pipe(
             map((res: Spots) => spotActions.setSpotsSuccess({ array: res }))
           )

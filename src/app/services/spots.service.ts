@@ -38,9 +38,8 @@ export class SpotsService {
     return this.http.post<Spot>(this.url, spot);
   }
 
-  getSpotsAroundMe(pc: string): Observable<Spots> {
-    console.log(pc);
-    return this.http.get<Spots>(`${this.url}/get/${pc}`);
+  getSpotsAroundMe(city: string): Observable<Spots> {
+    return this.http.get<Spots>(`${this.url}/city/${city}`);
   }
 
   public coordToAddress = async (long: number, lat: number) => {
@@ -57,7 +56,7 @@ export class SpotsService {
             info: {
               pc: data?.features[1].text,
               address: data?.features[0].place_name,
-              city: data?.features[0].place_name.split(',')[2],
+              city: data?.features[2].text,
             },
           })
         );

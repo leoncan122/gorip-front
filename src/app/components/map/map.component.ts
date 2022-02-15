@@ -37,6 +37,7 @@ export class MapComponent implements OnInit, OnDestroy {
     console.log('component destroyed');
   }
   ngOnInit() {
+    //the map is built everyTime lngLat$ changes?
     this.lngLat$.pipe(takeUntil(this.onDestroy$)).subscribe(
       (data) => {
         this.mapService.buildMap(data[0], data[1]);

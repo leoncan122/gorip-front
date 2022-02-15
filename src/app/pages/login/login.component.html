@@ -1,6 +1,6 @@
 <section>
   <div class="login-container">
-    <header>GoRip</header>
+    <header routerLink="/">GoRip</header>
 
     <div class="form__container">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -13,7 +13,7 @@
         Already not have an account?
         <span routerLink="/signup">Sign Up</span>
       </p>
-      <button (click)="testToken()">Send Token</button>
+      <!-- <button (click)="testToken()">Send Token</button> -->
     </div>
   </div>
 </section>

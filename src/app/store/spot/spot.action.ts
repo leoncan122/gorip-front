@@ -15,7 +15,7 @@ export const addSpotFailure = createAction('[Spots] Submit Success');
 
 export const setSpots = createAction(
   '[Spots] availableSpots',
-  props<{ pc: string }>()
+  props<{ city: string }>()
 );
 export const setSpotsSuccess = createAction(
   '[Spots] availableSpots',

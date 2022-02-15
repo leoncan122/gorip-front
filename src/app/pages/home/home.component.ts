@@ -8,9 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DinamicDirective } from 'src/app/dinamic.directive';
-import { SpotsService } from 'src/app/services/spots.service';
 import { SpotContainerComponent } from 'src/app/spot-container/spot-container.component';
-import { userState } from 'src/app/store/auth/auth.state';
 import { updateCoordinates } from 'src/app/store/localization/localization.action';
 import { localizationState } from 'src/app/store/localization/localization.state';
 import { setSpots } from 'src/app/store/spot/spot.action';
@@ -24,10 +22,9 @@ import { RootState } from 'src/app/store/store';
 export class HomeComponent implements OnInit {
   @ViewChild(DinamicDirective) public dinamicHost: DinamicDirective;
   public x: number[] = [0, 0];
-  public postalCode: Observable<string>;
+  public city: Observable<string>;
   constructor(
     private store: Store<RootState>,
-    private spotService: SpotsService,
     private componentFactoryRes: ComponentFactoryResolver
   ) {
     this.store
@@ -36,9 +33,7 @@ export class HomeComponent implements OnInit {
         this.x = data;
       });
 
-    this.postalCode = this.store.select(
-      (state) => state.localization.whereami.pc
-    );
+    this.city = this.store.select((state) => state.localization.whereami.city);
   }
   public createCompo() {
     const component = this.componentFactoryRes.resolveComponentFactory(
@@ -59,9 +54,9 @@ export class HomeComponent implements OnInit {
       );
     });
 
-    this.postalCode.subscribe((pc) => {
-      if (pc.length > 0) {
-        this.store.dispatch(setSpots({ pc }));
+    this.city.subscribe((city) => {
+      if (city.length > 0) {
+        this.store.dispatch(setSpots({ city }));
       }
     });
   }

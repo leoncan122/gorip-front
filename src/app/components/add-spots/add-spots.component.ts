@@ -28,7 +28,6 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   public form = new FormGroup({
     address: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required]),
-    // city: new FormControl,
     postal_code: new FormControl('', [Validators.required]),
     description: new FormControl('', [
       Validators.required,

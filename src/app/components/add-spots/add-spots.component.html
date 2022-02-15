@@ -44,9 +44,28 @@
     />
 
     <label for="photo">Upload photo</label>
-    <form name="photo" type="POST" enctype="multipart/formdata">
-      <input type="file" name="imagen" />
-    </form>
+    <input
+      type="file"
+      name="photo"
+      accept="image/*"
+      (change)="onFileSelected($event)"
+    />
+
+    <!-- <input
+      type="file"
+      name="imagen"
+      class="input-file"
+      (change)="onFileSelected($event)"
+      #fileUpload
+    />
+    <div class="file-upload">
+      {{ filename || "File not uploaded yet" }}
+      <button class="save-photo" (click)="fileUpload.click()">Attach</button>
+    </div> -->
+    <div class="file-upload">
+      {{ filename || "File not uploaded yet" }}
+    </div>
+
     <button type="submit" [disabled]="!form.valid">create</button>
     <button (click)="resetForm()">back</button>
   </form>

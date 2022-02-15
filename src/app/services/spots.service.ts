@@ -35,11 +35,15 @@ export class SpotsService {
   }
 
   addSpot(spot: Spot | Result): Observable<Spot> {
-    return this.http.post<Spot>(this.url, spot);
+    return this.http.post<Spot>('http://localhost:8080/api/spots/', spot);
   }
 
   getSpotsAroundMe(city: string): Observable<Spots> {
     return this.http.get<Spots>(`${this.url}/city/${city}`);
+  }
+
+  submitSpotImage(file: any) {
+    return this.http.post(`http://localhost:8080/api/spots/photo`, file);
   }
 
   public coordToAddress = async (long: number, lat: number) => {

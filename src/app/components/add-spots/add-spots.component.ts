@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { info } from 'src/app/store/localization/localization.action';
-
+import { SpotsService } from '../../services/spots.service';
 import { Observable, Subject } from 'rxjs';
 import { RootState } from 'src/app/store/store';
 import { addSpot } from 'src/app/store/spot/spot.action';
@@ -23,6 +23,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   public errorAddSpot$: Observable<boolean>;
   public showForm = false;
   public onDestroy$ = new Subject();
+  public filename = '';
 
   //form
   public form = new FormGroup({
@@ -33,8 +34,12 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.maxLength(50),
     ]),
+    // photo: new FormControl(null),
   });
-  constructor(private store: Store<RootState>) {
+  constructor(
+    private store: Store<RootState>,
+    private spotService: SpotsService
+  ) {
     this.store
       .select((state) => {
         return state.localization;
@@ -51,7 +56,19 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
       );
     this.errorAddSpot$ = this.store.select((state) => state.spots.failure);
   }
+  public onFileSelected(event: any) {
+    const file = event.target.files[0];
 
+    if (file) {
+      this.filename = file.name;
+      const formData = new FormData();
+      formData.append('photo', file);
+      this.form.addControl('photo', new FormControl(formData));
+
+      // const submit$ = this.spotService.submitSpotImage(formData);
+      // submit$.subscribe((data) => console.log(data));
+    }
+  }
   public getFormInfo = () => {
     this.showForm = true;
     // this function fill the addspot form
@@ -65,7 +82,8 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
   };
   public onSubmit(): void {
     const spot = this.form.value;
-    this.store.dispatch(addSpot({ spot }));
+    this.spotService.addSpot(spot).subscribe((data) => console.log(data));
+    //this.store.dispatch(addSpot({ spot }));
   }
   public resetForm() {
     this.showForm = false;

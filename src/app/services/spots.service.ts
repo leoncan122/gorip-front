@@ -34,7 +34,7 @@ export class SpotsService {
       .subscribe((data) => (this.addressInfo = data));
   }
 
-  addSpot(spot: Spot | Result): Observable<Spot> {
+  addSpot(spot: Spot | any): Observable<Spot> {
     return this.http.post<Spot>('http://localhost:8080/api/spots/', spot);
   }
 

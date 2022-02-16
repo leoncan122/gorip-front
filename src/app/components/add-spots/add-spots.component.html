@@ -7,25 +7,14 @@
     (ngSubmit)="onSubmit(); resetForm()"
   >
     <label for="address">Address</label>
-    <input
-      name="address"
-      formControlName="address"
-      [(ngModel)]="addressInfo.address"
-      readonly
-    />
-    <input
-      name="city"
-      formControlName="city"
-      [(ngModel)]="addressInfo.city"
-      readonly
-    />
+    <input name="address" formControlName="address" readonly />
+
+    <label for="city">City</label>
+    <input name="city" formControlName="city" readonly />
+
     <label for="postalCode">Postal Code</label>
-    <input
-      name="postalCode"
-      formControlName="postal_code"
-      [ngModel]="addressInfo.pc"
-      readonly
-    />
+    <input name="postalCode" formControlName="postal_code" readonly />
+
     <label for="type">Select type of spot</label>
     <select class="form-control" formControlName="type" name="type">
       <option value="handrail">handrail</option>

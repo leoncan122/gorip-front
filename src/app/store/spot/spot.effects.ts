@@ -16,17 +16,17 @@ import { Spots } from './spot.state';
 
 @Injectable()
 export class SpotEffects {
-  public submit$ = createEffect(() => {
-    return this.action$.pipe(
-      ofType(spotActions.addSpot),
-      mergeMap((action) =>
-        this.spotService.addSpot(action.spot).pipe(
-          map((spot) => spotActions.addSpotSuccess({ spot })),
-          catchError((error) => of(spotActions.addSpotFailure()))
-        )
-      )
-    );
-  });
+  // public submit$ = createEffect(() => {
+  //   return this.action$.pipe(
+  //     ofType(spotActions.addSpot),
+  //     mergeMap((action) =>
+  //       this.spotService.addSpot(action.spot).pipe(
+  //         map((spot) => spotActions.addSpotSuccess({ spot })),
+  //         catchError((error) => of(spotActions.addSpotFailure()))
+  //       )
+  //     )
+  //   );
+  // });
   public spotsAroundMe$ = createEffect(() => {
     return this.action$.pipe(
       ofType(spotActions.setSpots),

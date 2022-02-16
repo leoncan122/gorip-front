@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { Spot } from 'src/models/spot';
 import { SocketService } from '../services/socket.service';
+import { SpotsService } from '../services/spots.service';
 import { selectSpotById } from '../store/spot/spot.action';
 import { selectedSpots, spotValue } from '../store/spot/spot.selectors';
 import { RootState } from '../store/store';
@@ -18,12 +20,15 @@ export interface latLong {
 export class SpotContainerComponent implements OnInit {
   public spotContainerAble: false;
   public selectedSpotID$: Observable<number[]>;
-  public spotObject$: any;
+  public spotObject: any;
   public peopleInSpot: string[] = [];
   public sub: Subscription;
+  public imagePath: any;
 
   public clearSpotObject(): void {
     //passing id : 0 , the reducer will empty the  selected's array
+    // just cleaning the var spotObject will not set a spot selected anymore
+    // because the component init once
     this.store.dispatch(selectSpotById({ id: 0 }));
   }
   public usersInSpot(): void {
@@ -32,7 +37,7 @@ export class SpotContainerComponent implements OnInit {
       .subscribe((data: any) => {
         if (
           this.withinRadius(
-            { lat: this.spotObject$.long, lon: this.spotObject$.lat },
+            { lat: this.spotObject.long, lon: this.spotObject.lat },
             { lat: data.latitude, lon: data.longitude },
             0.1
           ) && //SpotObject is receiving long in change of lat, FIX!!
@@ -45,12 +50,10 @@ export class SpotContainerComponent implements OnInit {
 
   constructor(
     private store: Store<RootState>,
-    private socketService: SocketService
-  ) {
-    this.store.select(spotValue).subscribe((data) => {
-      this.spotObject$ = data;
-    });
-  }
+    private socketService: SocketService,
+    private spotService: SpotsService,
+    private domSanitizer: DomSanitizer
+  ) {}
   public withinRadius(point: latLong, interest: latLong, kms: number) {
     'use strict';
     let R = 6371;
@@ -72,6 +75,17 @@ export class SpotContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(spotValue).subscribe((data: any) => {
+      if (!data) return;
+      this.spotObject = data;
+      this.spotService
+        .getSpotImage(data?.photo.split('/')[5].split('.')[0])
+        .subscribe((data) => {
+          this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
+            'data:image/jpg;base64,' + data.photo
+          );
+        });
+    });
     this.usersInSpot();
   }
 }

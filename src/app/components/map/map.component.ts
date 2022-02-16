@@ -14,6 +14,7 @@ import { RootState } from 'src/app/store/store';
 import { selectSpotById } from 'src/app/store/spot/spot.action';
 import { selectCoordinates } from 'src/app/store/localization/localization.selectors';
 import { takeUntil } from 'rxjs/operators';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: '.app-map',
@@ -25,11 +26,7 @@ export class MapComponent implements OnInit, OnDestroy {
   public lngLat$: Observable<number[]>;
   private onDestroy$ = new Subject<void>();
 
-  constructor(
-    private mapService: MapService,
-    private store: Store<RootState>,
-    private renderer2: Renderer2
-  ) {
+  constructor(private mapService: MapService, private store: Store<RootState>) {
     this.lngLat$ = this.store.select(selectCoordinates);
   }
   ngOnDestroy() {

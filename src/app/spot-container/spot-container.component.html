@@ -1,12 +1,15 @@
-<section *ngIf="spotObject$" id="container-spot">
+<section *ngIf="spotObject" id="container-spot">
   <div id="spot-information">
-    <p>distancia</p>
-    {{ spotObject$.address }}
-
+    <img [src]="imagePath" />
+    <h3>
+      {{ spotObject.description }}
+    </h3>
+    <p>
+      {{ spotObject.address }}
+    </p>
     <ul *ngFor="let item of peopleInSpot">
       <li>{{ item }}</li>
     </ul>
     <button (click)="clearSpotObject()">back</button>
   </div>
-  <p>Foto</p>
 </section>

@@ -12,7 +12,11 @@
   flex-direction: column;
 }
 #spot-information {
-  height: 25%;
+  height: 50%;
   background-color: black;
   display: grid;
+}
+img {
+  width: 50%;
+  justify-self: center;
 }

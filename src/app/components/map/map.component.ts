@@ -43,6 +43,15 @@ export class MapComponent implements OnInit, OnDestroy {
         this.mapService.buildMap(data[0], data[1]);
         this.mapService.map.addControl(this.mapService.geocoder);
         this.mapService.addMarker(data[1], data[0]);
+        this.mapService.map.addControl(
+          new mapboxgl.GeolocateControl({
+            positionOptions: {
+              enableHighAccuracy: true,
+            },
+            trackUserLocation: true,
+            showUserHeading: true,
+          })
+        );
       },
       (err) => console.log(err),
       () => console.log('takeUntil completed')

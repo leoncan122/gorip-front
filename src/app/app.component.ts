@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Spot } from 'src/models/spot';
+import { MapService } from './services/map.service';
 import { SocketService } from './services/socket.service';
 import { updateCoordinates } from './store/localization/localization.action';
 import { selectAll } from './store/spot/spot.selectors';
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
 
   constructor(
     private store: Store<RootState>,
-    private socketService: SocketService
+    private socketService: SocketService,
+    private mapService: MapService
   ) {
     this.availableSpots = this.store.select(selectAll);
     this.currentLocation = this.store.select(

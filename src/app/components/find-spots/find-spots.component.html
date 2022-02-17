@@ -3,9 +3,9 @@
     <h3>Spots</h3>
     <li *ngFor="let name of spotTypesList" (click)="showList(name)">
       {{ name }}
-      <ul *ngIf="filteredList">
-        <li *ngFor="let place of filteredList">{{ place.address }}</li>
-      </ul>
     </li>
+    <ul *ngIf="filteredList">
+      <li *ngFor="let place of filteredList">{{ place.address }}</li>
+    </ul>
   </ul>
 </div>

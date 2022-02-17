@@ -5,18 +5,25 @@
   left: 0;
   background-color: rgba(0, 0, 0, 0.412);
   position: fixed;
-  color: red;
+  color: white;
   z-index: 10;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 #spot-information {
+  padding: 15px;
   height: 50%;
   background-color: black;
   display: grid;
 }
+p,
+h3 {
+  border: 2px solid orangered;
+  padding: 1%;
+}
 img {
-  width: 50%;
+  width: 100%;
+  margin-top: 25px;
   justify-self: center;
 }

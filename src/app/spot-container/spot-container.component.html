@@ -1,10 +1,12 @@
-<section *ngIf="spotObject" id="container-spot">
+<section *ngIf="spotContainerAble" id="container-spot">
   <div id="spot-information">
     <img [src]="imagePath" />
     <h3>
+      description:
       {{ spotObject.description }}
     </h3>
     <p>
+      address:
       {{ spotObject.address }}
     </p>
     <ul *ngFor="let item of peopleInSpot">

@@ -30,7 +30,6 @@ export class FindSpotsComponent implements OnInit {
   }
 
   public setList() {
-    this.el.nativeElement;
     this.spotsFromStore$.subscribe((data) => {
       data.forEach((spot) => {
         if (!this.spotTypesList.includes(spot.type)) {

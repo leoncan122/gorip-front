@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { Spot } from 'src/models/spot';
 import { SocketService } from '../services/socket.service';
 import { SpotsService } from '../services/spots.service';
 import { selectSpotById } from '../store/spot/spot.action';
-import { selectedSpots, spotValue } from '../store/spot/spot.selectors';
+import { spotValue } from '../store/spot/spot.selectors';
 import { RootState } from '../store/store';
 export interface latLong {
   lat: number;
@@ -18,18 +18,27 @@ export interface latLong {
   styleUrls: ['./spot-container.component.scss'],
 })
 export class SpotContainerComponent implements OnInit {
-  public spotContainerAble: false;
+  public spotContainerAble = false;
   public selectedSpotID$: Observable<number[]>;
   public spotObject: any;
   public peopleInSpot: string[] = [];
   public sub: Subscription;
   public imagePath: any;
-
+  constructor(
+    private store: Store<RootState>,
+    private socketService: SocketService,
+    private spotService: SpotsService,
+    private domSanitizer: DomSanitizer,
+    private router: Router
+  ) {}
   public clearSpotObject(): void {
     //passing id : 0 , the reducer will empty the  selected's array
     // just cleaning the var spotObject will not set a spot selected anymore
     // because the component init once
     this.store.dispatch(selectSpotById({ id: 0 }));
+    this.spotContainerAble = false;
+
+    //this.router.navigate(['/']);
   }
   public usersInSpot(): void {
     this.sub = this.socketService
@@ -48,12 +57,6 @@ export class SpotContainerComponent implements OnInit {
       });
   }
 
-  constructor(
-    private store: Store<RootState>,
-    private socketService: SocketService,
-    private spotService: SpotsService,
-    private domSanitizer: DomSanitizer
-  ) {}
   public withinRadius(point: latLong, interest: latLong, kms: number) {
     'use strict';
     let R = 6371;
@@ -77,6 +80,7 @@ export class SpotContainerComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(spotValue).subscribe((data: any) => {
       if (!data) return;
+      this.spotContainerAble = true;
       this.spotObject = data;
       this.spotService
         .getSpotImage(data?.photo.split('/')[5].split('.')[0])

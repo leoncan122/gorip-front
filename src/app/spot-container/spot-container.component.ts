@@ -37,7 +37,7 @@ export class SpotContainerComponent implements OnInit {
     // because the component init once
     this.store.dispatch(selectSpotById({ id: 0 }));
     this.spotContainerAble = false;
-
+    this.peopleInSpot = [];
     //this.router.navigate(['/']);
   }
   public usersInSpot(): void {
@@ -45,7 +45,7 @@ export class SpotContainerComponent implements OnInit {
       .receiveUsersPosition()
       .subscribe((data: any) => {
         if (
-          this.withinRadius(
+          this.spotService.withinRadius(
             { lat: this.spotObject.long, lon: this.spotObject.lat },
             { lat: data.latitude, lon: data.longitude },
             0.1
@@ -55,26 +55,6 @@ export class SpotContainerComponent implements OnInit {
           this.peopleInSpot.push(data.id);
         }
       });
-  }
-
-  public withinRadius(point: latLong, interest: latLong, kms: number) {
-    'use strict';
-    let R = 6371;
-    let deg2rad = (n: any) => {
-      return Math.tan(n * (Math.PI / 180));
-    };
-    let dLat = deg2rad(interest.lat - point.lat);
-    let dLon = deg2rad(interest.lon - point.lon);
-
-    let a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(point.lat)) *
-        Math.cos(deg2rad(interest.lat)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    let c = 2 * Math.asin(Math.sqrt(a));
-    let d = R * c;
-    return d <= kms;
   }
 
   ngOnInit(): void {

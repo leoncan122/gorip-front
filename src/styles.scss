@@ -19,6 +19,7 @@ body {
 .app-footer {
   @include borderLiner($borderSize: 5px);
   margin: 10px;
+  grid-column: 1/3;
 }
 .app-map {
   @extend %map;

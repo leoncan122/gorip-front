@@ -8,6 +8,7 @@ import {
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { DinamicDirective } from 'src/app/dinamic.directive';
+import { SpotsService } from 'src/app/services/spots.service';
 import { SpotContainerComponent } from 'src/app/spot-container/spot-container.component';
 import { updateCoordinates } from 'src/app/store/localization/localization.action';
 import { localizationState } from 'src/app/store/localization/localization.state';
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
   public city: Observable<string>;
   constructor(
     private store: Store<RootState>,
+    private spotService: SpotsService,
     private componentFactoryRes: ComponentFactoryResolver
   ) {
     this.store
@@ -53,7 +55,18 @@ export class HomeComponent implements OnInit {
         })
       );
     });
-
+    // this.store
+    //   .select((state) => state.spots.entities)
+    //   .subscribe((spots) => {
+    //     let matchSpot = Object.values(spots).find((spot) => {
+    //       return this.spotService.withinRadius(
+    //         { lat: this.x[1], lon: this.x[0] },
+    //         { lat: spot.lat, lon: spot.long },
+    //         0.3
+    //       );
+    //     });
+    //     console.log(matchSpot);
+    //   });
     this.city.subscribe((city) => {
       if (city.length > 0) {
         this.store.dispatch(setSpots({ city }));

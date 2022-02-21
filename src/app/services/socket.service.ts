@@ -1,22 +1,34 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { map, Observable, Observer, takeUntil } from 'rxjs';
 import { io } from 'socket.io-client';
+import { selectCoordinates } from '../store/localization/localization.selectors';
+import { RootState } from '../store/store';
+import { SpotsService } from './spots.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService {
-  // public url: string = this.apiDomain();
   public socket = io('https://gorip-back.herokuapp.com');
+  public spots$ = this.store.select((state) => state.spots.entities);
 
-  constructor() {}
-  // public apiDomain() {
-  //   const production = process.env.NODE_ENV === 'production';
-  //   console.log(production);
-  //   return production ? 'https://gorip-back.herokuapp.com' : 'localhost:8080';
-  // }
+  constructor(
+    private store: Store<RootState>,
+    private spotService: SpotsService
+  ) {}
+
   public emitPosition(position: number[]) {
-    this.socket.emit('position', position);
+    this.spots$.subscribe((spots) => {
+      let matchedSpot = Object.values(spots).find((spot) => {
+        return this.spotService.withinRadius(
+          { lat: position[1], lon: position[0] },
+          { lat: spot.lat, lon: spot.long },
+          0.3
+        );
+      });
+      if (matchedSpot) this.socket.emit('position', position);
+    });
   }
   public receiveUsersPosition(): any {
     let observable = new Observable((observer) => {

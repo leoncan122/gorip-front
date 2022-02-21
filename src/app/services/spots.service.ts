@@ -11,6 +11,7 @@ import {
   selectCoordinates,
 } from '../store/localization/localization.selectors';
 import { Spots } from '../store/spot/spot.state';
+import { latLong } from '../spot-container/spot-container.component';
 export interface Result {
   lat: number;
   long: number;
@@ -21,6 +22,7 @@ export interface Result {
 })
 export class SpotsService {
   url = 'https://gorip-back.herokuapp.com/api/spots';
+  localhost = 'http://localhost:8080/api/spots/';
   result: Result;
 
   public addressInfo: info;
@@ -35,7 +37,7 @@ export class SpotsService {
   }
 
   addSpot(spot: Spot | any): Observable<Spot> {
-    return this.http.post<Spot>(this.url, spot);
+    return this.http.post<Spot>(this.localhost, spot);
   }
 
   getSpotsAroundMe(city: string): Observable<Spots> {
@@ -45,7 +47,29 @@ export class SpotsService {
   getSpotImage(id: any): Observable<any> {
     return this.http.get(`${this.url}/photo/${id}`);
   }
+  public checkUserMatchSpot(point: latLong, interest: latLong, kms: number) {
+    const resultBoolean = this.withinRadius(point, interest, kms);
+    return resultBoolean;
+  }
+  public withinRadius(point: latLong, interest: latLong, kms: number) {
+    'use strict';
+    let R = 6371;
+    let deg2rad = (n: any) => {
+      return Math.tan(n * (Math.PI / 180));
+    };
+    let dLat = deg2rad(interest.lat - point.lat);
+    let dLon = deg2rad(interest.lon - point.lon);
 
+    let a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(deg2rad(point.lat)) *
+        Math.cos(deg2rad(interest.lat)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
+    let c = 2 * Math.asin(Math.sqrt(a));
+    let d = R * c;
+    return d <= kms;
+  }
   public coordToAddress = async (long: number, lat: number) => {
     // this fetch convert coord to address, there is another information like postalCode
     try {

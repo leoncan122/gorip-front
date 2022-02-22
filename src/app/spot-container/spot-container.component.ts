@@ -46,7 +46,7 @@ export class SpotContainerComponent implements OnInit {
       .subscribe((data: any) => {
         if (
           this.spotService.withinRadius(
-            { lat: this.spotObject.long, lon: this.spotObject.lat },
+            { lat: this.spotObject?.long, lon: this.spotObject?.lat },
             { lat: data.latitude, lon: data.longitude },
             0.1
           ) && //SpotObject is receiving long in change of lat, FIX!!
@@ -59,6 +59,7 @@ export class SpotContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(spotValue).subscribe((data: any) => {
+      console.log(data);
       if (!data) return;
       this.spotContainerAble = true;
       this.spotObject = data;

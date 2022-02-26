@@ -1,6 +1,6 @@
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, Observer, takeUntil } from 'rxjs';
+import { Observable } from 'rxjs';
 import { io } from 'socket.io-client';
 import { selectCoordinates } from '../store/localization/localization.selectors';
 import { RootState } from '../store/store';
@@ -27,7 +27,9 @@ export class SocketService {
           0.3
         );
       });
-      if (matchedSpot) this.socket.emit('position', position);
+      if (matchedSpot) {
+        this.socket.emit('position', position);
+      }
     });
   }
   public receiveUsersPosition(): any {
@@ -51,8 +53,8 @@ export class SocketService {
   }
   public chatRoom() {
     let observable = new Observable((obse) => {
-      this.socket.on('msg-room', (msg) => {
-        obse.next(msg);
+      this.socket.on('msg-room', (data) => {
+        obse.next(data);
       });
     });
     return observable;

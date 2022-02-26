@@ -1,8 +1,12 @@
-<div class="chat-wrapper">
-  <div class="msg-box"></div>
-  <div class="text-box">
-    <textarea (input)="getMsg($event)"></textarea>
-    <button (click)="sendMsg()">send</button>
-    <button>back</button>
+<div #windowChat *ngIf="windowIsAble" class="chat-wrapper">
+  <div class="msg-box">
+    <ul *ngFor="let item of historial">
+      <li>{{ item.from }}: {{ item.msg }}</li>
+    </ul>
   </div>
+
+  <textarea (input)="getMsg($event)"></textarea>
+  <button class="send-btn" (click)="sendMsg()">send</button>
+  <button class="back-btn" (click)="closeWindowChat()">back</button>
 </div>
+<button *ngIf="!windowIsAble" (click)="openChatAgain()">openchat again</button>

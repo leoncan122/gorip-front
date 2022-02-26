@@ -38,4 +38,26 @@ export class SocketService {
     });
     return observable;
   }
+  public connectRoom(roomId: string) {
+    this.socket.emit('room', { roomId });
+  }
+  public joinRoom() {
+    let observable = new Observable((obse) => {
+      this.socket.on('user-connected', (msg) => {
+        obse.next(msg);
+      });
+    });
+    return observable;
+  }
+  public chatRoom() {
+    let observable = new Observable((obse) => {
+      this.socket.on('msg-room', (msg) => {
+        obse.next(msg);
+      });
+    });
+    return observable;
+  }
+  public sendMsgToRoom(msg: string) {
+    this.socket.emit('room', { msg });
+  }
 }

@@ -23,6 +23,8 @@ import { SpotContainerComponent } from './spot-container/spot-container.componen
 import { AuthEffects } from './store/auth/auth.effects';
 import { DinamicDirective } from './dinamic.directive';
 import { AddSpotBtnComponent } from './components/add-spot-btn/add-spot-btn.component';
+import { JoinButtonComponent } from './components/chat/join-button/join-button.component';
+import { ChatRoomComponent } from './components/chat/chat-room/chat-room.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { AddSpotBtnComponent } from './components/add-spot-btn/add-spot-btn.comp
     SpotContainerComponent,
     DinamicDirective,
     AddSpotBtnComponent,
+    JoinButtonComponent,
+    ChatRoomComponent,
   ],
   entryComponents: [SpotContainerComponent],
   imports: [

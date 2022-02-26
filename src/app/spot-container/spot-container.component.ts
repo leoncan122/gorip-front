@@ -53,13 +53,14 @@ export class SpotContainerComponent implements OnInit {
           !this.peopleInSpot.includes(data.id)
         ) {
           this.peopleInSpot.push(data.id);
+          this.socketService.connectRoom(this.spotObject._id);
         }
       });
   }
 
   ngOnInit(): void {
     this.store.select(spotValue).subscribe((data: any) => {
-      console.log(data);
+      // console.log(data);
       if (!data) return;
       this.spotContainerAble = true;
       this.spotObject = data;
@@ -72,5 +73,6 @@ export class SpotContainerComponent implements OnInit {
         });
     });
     this.usersInSpot();
+    this.socketService.joinRoom().subscribe((data) => console.log(data));
   }
 }

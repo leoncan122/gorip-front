@@ -37,7 +37,7 @@ export class SpotsService {
   }
 
   addSpot(spot: Spot | any): Observable<Spot> {
-    return this.http.post<Spot>(this.localhost, spot);
+    return this.http.post<Spot>(this.url, spot);
   }
 
   getSpotsAroundMe(city: string): Observable<Spots> {

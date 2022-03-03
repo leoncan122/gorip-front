@@ -1,7 +1,15 @@
 <div #windowChat *ngIf="windowIsAble" class="chat-wrapper">
   <div class="msg-box">
-    <ul *ngFor="let item of historial">
-      <li>{{ item.from }}: {{ item.msg }}</li>
+    <ul class="chat-historial">
+      <ng-container *ngFor="let item of historial">
+        <li *ngIf="item.from === 'You'" class="item my-side">{{ item.msg }}</li>
+
+        <li *ngIf="item.from != 'You'" class="item">
+          {{ item.from.slice(0, 5) }}...: {{ item.msg }}
+        </li>
+      </ng-container>
+
+      <!-- <li *ngIf="item.from != 'You'">{{ item.from }}: {{ item.msg }}</li> -->
     </ul>
   </div>
 

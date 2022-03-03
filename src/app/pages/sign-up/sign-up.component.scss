@@ -1,0 +1,10 @@
+@import "../login/login.component.scss";
+.auth-container {
+  @extend %auth-container;
+}
+.form-container {
+  display: grid;
+}
+form {
+  @extend %form;
+}

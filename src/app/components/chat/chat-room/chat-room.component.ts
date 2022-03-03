@@ -25,6 +25,7 @@ export class ChatRoomComponent implements OnInit {
     this.userInput = event.target.value;
   }
   public sendMsg() {
+    this.historial = [...this.historial, { from: 'You', msg: this.userInput }];
     this.socketService.sendMsgToRoom(this.userInput);
   }
   public closeWindowChat() {

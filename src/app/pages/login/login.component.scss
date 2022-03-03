@@ -1,4 +1,4 @@
-.login-container {
+%auth-container {
   background: radial-gradient(
     circle,
     rgba(0, 0, 0, 0.716) 0%,
@@ -16,6 +16,9 @@
     text-align: center;
   }
 }
+.login-container {
+  @extend %auth-container;
+}
 header {
   font-size: 99px;
   text-align: center;
@@ -25,15 +28,15 @@ header {
 .form__container {
   display: grid;
 }
-form {
+%form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 80%;
   height: 30vh;
   padding: 3%;
-  border: 3px solid white;
-  box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
+  // border: 3px solid white;
+  // box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
   justify-content: space-evenly;
   justify-self: center;
   & > input {
@@ -42,6 +45,10 @@ form {
     border-radius: 5px;
   }
 }
+form {
+  @extend %form;
+}
+
 header:after {
   content: "GoRip";
   position: absolute;

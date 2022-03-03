@@ -1,8 +1,15 @@
-<div>
-  <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-    <input type="text" formControlName="email" placeholder="email" />
-    <input type="text" formControlName="name" placeholder="name" />
-    <input type="text" formControlName="password" placeholder="password" />
-    <button type="submit" [disabled]="!signUpForm.valid">signup</button>
-  </form>
+<div class="auth-container">
+  <header routerLink="/">GoRip</header>
+  <div class="form-container">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="email" placeholder="email" />
+      <input type="text" formControlName="name" placeholder="name" />
+      <input type="text" formControlName="password" placeholder="password" />
+      <button type="submit" [disabled]="!signUpForm.valid">signup</button>
+    </form>
+    <p>
+      Already registered?
+      <span routerLink="/login">Log in</span>
+    </p>
+  </div>
 </div>

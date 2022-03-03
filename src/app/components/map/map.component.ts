@@ -58,20 +58,22 @@ export class MapComponent implements OnInit, OnDestroy {
     );
 
     //this.mapService.realPosition();
-    this.mapService.spotsFromStore$.subscribe((data) => {
-      return Object.values(data).map((spot: any) => {
-        const marker = new mapboxgl.Marker({
-          color: '#FF02134',
-          draggable: false,
-        })
-          .setLngLat([spot.lat, spot.long])
-          .addTo(this.mapService.map);
+    this.store
+      .select((state) => state.spots.entities)
+      .subscribe((data) => {
+        return Object.values(data).map((spot: any) => {
+          const marker = new mapboxgl.Marker({
+            color: '#FF02134',
+            draggable: false,
+          })
+            .setLngLat([spot.lat, spot.long])
+            .addTo(this.mapService.map);
 
-        marker.getElement().addEventListener('click', () => {
-          this.store.dispatch(selectSpotById({ id: spot._id }));
-          //this.router.navigate(['/spots']);
+          marker.getElement().addEventListener('click', () => {
+            this.store.dispatch(selectSpotById({ id: spot._id }));
+            //this.router.navigate(['/spots']);
+          });
         });
       });
-    });
   }
 }

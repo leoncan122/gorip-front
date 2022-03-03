@@ -13,7 +13,7 @@
     </ul>
   </div>
 
-  <textarea (input)="getMsg($event)"></textarea>
+  <textarea (input)="getMsg($event)" [value]="this.userInput"></textarea>
   <button class="send-btn" (click)="sendMsg()">send</button>
   <button class="back-btn" (click)="closeWindowChat()">back</button>
 </div>

@@ -5,22 +5,22 @@
 %primary_btn {
   border-style: none;
   background-color: transparent;
-  color: white;
+  color: #000000;
   font-size: 18px;
   font-weight: bold;
   border-radius: 10px;
-  box-shadow: inset 0px -10px 14px 1px orange;
+  box-shadow: inset 0px -10px 14px 1px #404040;
   height: 50px;
   width: 62px;
 }
 %nav {
   @include borderLiner(
     $radius: 50px 0px 0px 50px,
-    $borderSize: 22px,
+    $borderSize: 19px,
     $type: dashed
   );
-  background-color: transparent;
-  color: orange;
+  background-color: orangered;
+  color: #000000;
   height: 90vh;
   grid-column: 2/3;
   display: flex;

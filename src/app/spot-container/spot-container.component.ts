@@ -48,12 +48,12 @@ export class SpotContainerComponent implements OnInit {
           this.spotService.withinRadius(
             { lat: this.spotObject?.long, lon: this.spotObject?.lat },
             { lat: data.latitude, lon: data.longitude },
-            0.1
+            0.2
           ) && //SpotObject is receiving long in change of lat, FIX!!
           !this.peopleInSpot.includes(data.id)
         ) {
           this.peopleInSpot.push(data.id);
-          this.socketService.connectRoom(this.spotObject._id);
+          // this.socketService.connectRoom(this.spotObject._id);
         }
       });
   }
@@ -62,6 +62,9 @@ export class SpotContainerComponent implements OnInit {
     this.store.select(spotValue).subscribe((data: any) => {
       // console.log(data);
       if (!data) return;
+      console.log(data._id);
+      this.socketService.connectRoom(data._id);
+
       this.spotContainerAble = true;
       this.spotObject = data;
       this.spotService

@@ -14,7 +14,7 @@ import { SocketService } from 'src/app/services/socket.service';
 })
 export class ChatRoomComponent implements OnInit {
   @ViewChild('windowChat') public window: ElementRef;
-  public userInput: string;
+  public userInput: string = '';
   public historial: any[] = [];
   public windowIsAble = true;
   constructor(
@@ -27,6 +27,7 @@ export class ChatRoomComponent implements OnInit {
   public sendMsg() {
     this.historial = [...this.historial, { from: 'You', msg: this.userInput }];
     this.socketService.sendMsgToRoom(this.userInput);
+    this.userInput = '';
   }
   public closeWindowChat() {
     this.windowIsAble = false;

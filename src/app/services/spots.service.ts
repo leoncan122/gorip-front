@@ -21,7 +21,7 @@ export interface Result {
   providedIn: 'root',
 })
 export class SpotsService {
-  url = environment.backendURL;
+  url = `${environment.backendURL}/api/spots`;
   result: Result;
 
   public addressInfo: info;

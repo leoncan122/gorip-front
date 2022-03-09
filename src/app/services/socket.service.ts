@@ -5,22 +5,26 @@ import { io } from 'socket.io-client';
 import { selectCoordinates } from '../store/localization/localization.selectors';
 import { RootState } from '../store/store';
 import { SpotsService } from './spots.service';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService {
-  public socket = io('https://gorip-back.herokuapp.com');
-  public spots$ = this.store.select((state) => state.spots.entities);
+  public socket = io(environment.backendURL);
+  public spots$ = this.store.select((state) => state.spots);
+  public spotId: number;
 
   constructor(
     private store: Store<RootState>,
     private spotService: SpotsService
-  ) {}
+  ) {
+    this.spots$.subscribe((data) => (this.spotId = data.selected[0]));
+  }
 
   public emitPosition(position: number[]) {
     this.spots$.subscribe((spots) => {
-      let matchedSpot = Object.values(spots).find((spot) => {
+      let matchedSpot = Object.values(spots.entities).find((spot) => {
         return this.spotService.withinRadius(
           { lat: position[1], lon: position[0] },
           { lat: spot.lat, lon: spot.long },
@@ -43,13 +47,18 @@ export class SocketService {
   public connectRoom(roomId: string) {
     this.socket.emit('room', { roomId });
   }
-  public joinRoom() {
-    let observable = new Observable((obse) => {
-      this.socket.on('user-connected', (msg) => {
-        obse.next(msg);
-      });
-    });
-    return observable;
+  public joinRoom(roomId: string) {
+    console.log(roomId);
+    this.socket.emit('join-room', roomId);
+    // let observable = new Observable((obse) => {
+    //   this.socket.on('user-connected', (msg) => {
+    //     obse.next(msg);
+    //   });
+    // });
+    // return observable;
+  }
+  public leaveRoom(roomId: string) {
+    this.socket.emit('unsubscribe', roomId);
   }
   public chatRoom() {
     let observable = new Observable((obse) => {
@@ -60,6 +69,7 @@ export class SocketService {
     return observable;
   }
   public sendMsgToRoom(msg: string) {
-    this.socket.emit('room', { msg });
+    console.log(this.spotId);
+    this.socket.emit('room', { msg, roomId: this.spotId.toString() });
   }
 }

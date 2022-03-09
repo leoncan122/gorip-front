@@ -35,6 +35,7 @@ export class SpotContainerComponent implements OnInit {
     //passing id : 0 , the reducer will empty the  selected's array
     // just cleaning the var spotObject will not set a spot selected anymore
     // because the component init once
+    this.socketService.leaveRoom(this.spotObject._id);
     this.store.dispatch(selectSpotById({ id: 0 }));
     this.spotContainerAble = false;
     this.peopleInSpot = [];
@@ -62,8 +63,7 @@ export class SpotContainerComponent implements OnInit {
     this.store.select(spotValue).subscribe((data: any) => {
       // console.log(data);
       if (!data) return;
-      console.log(data._id);
-      this.socketService.connectRoom(data._id);
+      this.socketService.joinRoom(data._id);
 
       this.spotContainerAble = true;
       this.spotObject = data;
@@ -76,6 +76,6 @@ export class SpotContainerComponent implements OnInit {
         });
     });
     this.usersInSpot();
-    this.socketService.joinRoom().subscribe((data) => console.log(data));
+    this.socketService.joinRoom(this.spotObject._id);
   }
 }

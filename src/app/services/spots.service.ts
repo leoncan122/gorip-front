@@ -21,8 +21,7 @@ export interface Result {
   providedIn: 'root',
 })
 export class SpotsService {
-  url = 'https://gorip-back.herokuapp.com/api/spots';
-  localhost = 'http://localhost:8080/api/spots/';
+  url = environment.backendURL;
   result: Result;
 
   public addressInfo: info;

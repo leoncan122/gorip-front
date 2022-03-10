@@ -20,10 +20,15 @@
   @extend %auth-container;
 }
 header {
-  font-size: 99px;
+  font-size: 100px;
   text-align: center;
-  color: black;
-  text-shadow: 0.03em 0.03em 0 black;
+  background-color: transparent;
+  font-family: sansation;
+  color: transparent;
+
+  // color: #ff9469da;
+  font-style: italic;
+  z-index: 10;
 }
 .form__container {
   display: grid;
@@ -52,28 +57,65 @@ form {
 header:after {
   content: "GoRip";
   position: absolute;
-  left: 0.52em;
-  // top: 1.69em;
-  // text-shadow: none;
-  background-image: linear-gradient(
-    45deg,
-    transparent 45%,
-    #ebe9e0 45%,
-    #fff500 55%,
-    transparent 0
-  );
-  background-size: 0.05em 0.05em;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  left: 15%;
+  // color: #ff9469;
+  color: rgba(0, 0, 0, 0.6);
 
-  animation: shad-anim 7s ease infinite;
+  perspective: 100px;
+  animation: backcolor 4s infinite;
+  animation-fill-mode: forwards;
 }
 
-@keyframes shad-anim {
-  0% {
-    background-position: 0 0;
+@keyframes backcolor {
+  10% {
+    color: rgba(0, 0, 0, 0.6);
+
+    text-shadow: none;
   }
-  0% {
-    background-position: 100% -100%;
+
+  11% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 8px orangered;
+  }
+
+  20% {
+    color: rgba(0, 0, 0, 0.6);
+
+    text-shadow: none;
+  }
+
+  22% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 7px orangered;
+  }
+
+  19% {
+    color: rgba(0, 0, 0, 0.6);
+
+    text-shadow: none;
+  }
+
+  57% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 8px orangered;
+  }
+
+  58% {
+    color: rgba(0, 0, 0, 0.6);
+
+    text-shadow: none;
+  }
+  65% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 8px orangered;
+  }
+  93% {
+    color: rgba(0, 0, 0, 0.6);
+
+    text-shadow: none;
+  }
+  96% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 8px orangered;
   }
 }

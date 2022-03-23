@@ -67,13 +67,12 @@ export class SpotContainerComponent implements OnInit {
 
       this.spotContainerAble = true;
       this.spotObject = data;
-      this.spotService
-        .getSpotImage(data?.photo.split('/')[5].split('.')[0])
-        .subscribe((data) => {
-          this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
-            'data:image/jpg;base64,' + data.photo
-          );
-        });
+      const imgID = data?.photo.split('/')[5].split('.')[0];
+      this.spotService.getSpotImage(imgID).subscribe((data) => {
+        this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
+          'data:image/jpg;base64,' + data.photo
+        );
+      });
     });
     this.usersInSpot();
     this.socketService.joinRoom(this.spotObject._id);

@@ -1,4 +1,7 @@
+@import "../../../devices.scss";
+
 %auth-container {
+  height: 100vh;
   background-color: radial-gradient(
     circle,
     rgba(0, 0, 0, 0.716) 0%,
@@ -11,7 +14,6 @@
     black 335deg
   );
   // background: radial-gradient(circle, rgb(0 0 0 / 93%) 0%, #ff6800 100%);
-  height: 90vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
@@ -34,7 +36,18 @@ header {
   // color: #ff9469da;
   font-style: italic;
   z-index: 10;
+  display: block;
+  // color: #ff9469;
+  color: rgba(0, 0, 0, 0.6);
+  perspective: 100px;
+  animation: neon 4s linear infinite;
+  animation-direction: alternate-reverse;
+  & > span {
+    cursor: pointer;
+    align-self: flex-end;
+  }
 }
+
 .form__container {
   display: grid;
 }
@@ -45,8 +58,6 @@ header {
   width: 80%;
   height: 30vh;
   padding: 3%;
-  // border: 3px solid white;
-  // box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
   justify-content: space-evenly;
   justify-self: center;
   & > input {
@@ -59,19 +70,11 @@ form {
   @extend %form;
 }
 
-header:after {
-  content: "GoRip";
-  position: absolute;
-  left: 15%;
-  // color: #ff9469;
-  color: rgba(0, 0, 0, 0.6);
-
-  perspective: 100px;
-  animation: neon 4s linear infinite;
-  animation-direction: alternate-reverse;
-}
-
 @keyframes neon {
+  9% {
+    color: rgba(0, 0, 0, 0.4);
+    text-shadow: 8px 7px 7px orangered;
+  }
   10% {
     color: rgba(0, 0, 0, 0.6);
 
@@ -93,12 +96,6 @@ header:after {
     color: rgba(0, 0, 0, 0.4);
     text-shadow: 8px 7px 7px orangered;
   }
-
-  19% {
-    color: rgba(0, 0, 0, 0.6);
-
-    text-shadow: none;
-  }
   45% {
     color: rgba(0, 0, 0, 0.4);
     text-shadow: 8px 7px 7px orangered;
@@ -118,7 +115,7 @@ header:after {
   59% {
     color: rgba(0, 0, 0, 0.6);
 
-    text-shadow: none;
+    text-shadow: nsone;
   }
   65% {
     color: rgba(0, 0, 0, 0.4);

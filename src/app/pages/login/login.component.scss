@@ -40,7 +40,7 @@ header {
   // color: #ff9469;
   color: rgba(0, 0, 0, 0.6);
   perspective: 100px;
-  animation: neon 4s linear infinite;
+  animation: neon 4s ease-in-out infinite;
   animation-direction: alternate-reverse;
   & > span {
     cursor: pointer;

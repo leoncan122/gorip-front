@@ -48,7 +48,7 @@ export class SocketService {
     this.socket.emit('room', { roomId });
   }
   public joinRoom(roomId: string) {
-    console.log(roomId);
+    // console.log(roomId);
     this.socket.emit('join-room', roomId);
     // let observable = new Observable((obse) => {
     //   this.socket.on('user-connected', (msg) => {

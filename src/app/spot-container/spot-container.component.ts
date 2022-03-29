@@ -69,9 +69,11 @@ export class SpotContainerComponent implements OnInit {
       this.spotObject = data;
       const imgID = data?.photo.split('/')[5].split('.')[0];
       this.spotService.getSpotImage(imgID).subscribe((data) => {
-        this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
-          'data:image/jpg;base64,' + data.photo
-        );
+        this.imagePath = 'data:image/jpg;base64,' + data.photo;
+
+        // this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
+        //   'data:image/jpg;base64,' + data.photo
+        // );
       });
     });
     this.usersInSpot();

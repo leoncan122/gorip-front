@@ -9,7 +9,12 @@
       address:
       {{ spotObject.address }}
     </p>
-    <app-join-button></app-join-button>
+    <h1>In this spot are connected: {{ peopleInSpot.length }} skaters</h1>
+    <p>
+      Want to chat real time with people in this Spot?
+      <app-join-button></app-join-button>
+    </p>
+
     <ul *ngFor="let item of peopleInSpot">
       <li>{{ item }}</li>
     </ul>

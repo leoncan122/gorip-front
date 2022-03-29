@@ -5,6 +5,7 @@ import { LoginService } from 'src/app/services/login.service';
 import { submitLogin } from 'src/app/store/auth/auth.action';
 import { RootState } from 'src/app/store/store';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -24,14 +25,16 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<RootState>,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) {
     this.store
       .select((state) => state.user)
       .subscribe((data) => {
         this.authenticated = data.status;
         this.token = data.token;
-        if (data.authenticated === true) {
+        if (data.token) {
+          this.localStorageService.setSavedState('jwt', data.token);
           this.router.navigate(['/']);
         }
       });

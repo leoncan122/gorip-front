@@ -1,5 +1,6 @@
 $desktop-minwdt: 55em;
 $tablet-minwdt: 37.5em;
+
 @mixin fromsize($size) {
   @media screen and (min-width: $size) {
     @content;

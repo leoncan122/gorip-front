@@ -15,6 +15,7 @@
   padding: 15px;
   background-color: black;
   display: grid;
+  overflow: scroll;
 }
 p,
 h3 {
@@ -22,7 +23,7 @@ h3 {
   padding: 1%;
 }
 img {
-  width: 100%;
+  max-width: 75%;
   margin-top: 25px;
   justify-self: center;
 }

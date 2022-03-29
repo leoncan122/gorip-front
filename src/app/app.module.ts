@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 
@@ -25,7 +25,23 @@ import { DinamicDirective } from './dinamic.directive';
 import { AddSpotBtnComponent } from './components/add-spot-btn/add-spot-btn.component';
 import { JoinButtonComponent } from './components/chat/join-button/join-button.component';
 import { ChatRoomComponent } from './components/chat/chat-room/chat-room.component';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+import { reducers, RootState } from './store/store';
+import { localStorageSync } from 'ngrx-store-localstorage';
 
+export function localStorageSyncReducer(
+  reducer: ActionReducer<RootState>
+): ActionReducer<RootState> {
+  return localStorageSync({
+    keys: ['jwt'],
+    rehydrate: true,
+  })(reducer);
+}
+
+export const metaReducers: Array<MetaReducer<RootState, any>> = [
+  localStorageSyncReducer,
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,9 +68,16 @@ import { ChatRoomComponent } from './components/chat/chat-room/chat-room.compone
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([SpotEffects, AuthEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

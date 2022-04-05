@@ -11,9 +11,7 @@ import { RootState } from '../store/store';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private store: Store<RootState>) {
-    console.log('cabeza de pingo');
-  }
+  constructor(private store: Store<RootState>) {}
 
   intercept(
     request: HttpRequest<unknown>,

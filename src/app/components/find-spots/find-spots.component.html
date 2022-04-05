@@ -1,9 +1,12 @@
 <div *ngIf="spotTypesList">
-  <ul>
-    <h3>Spots</h3>
-    <li *ngFor="let name of spotTypesList" (click)="showList(name)">
+  <ul class="list-spots">
+    <h1 class="list-spots-heading">Spots</h1>
+    <h3>Here you can see the spots orderded by type. Click below to see it.</h3>
+    <li #test *ngFor="let name of spotTypesList" (click)="showList(name)">
       {{ name }}
     </li>
+    <div #itemTypeBtn class="item-toogle"></div>
+
     <ul *ngIf="filteredList">
       <li *ngFor="let place of filteredList">{{ place.address }}</li>
     </ul>

@@ -1,0 +1,24 @@
+.list-spots-heading {
+}
+.list-spots {
+  list-style: none;
+  line-height: 2rem;
+  & > li {
+    cursor: pointer;
+  }
+}
+.item-toogle {
+  background-color: rgba(255, 68, 0, 0.603);
+  width: 0px;
+  height: 3px;
+  border-radius: 4px;
+}
+.item-toogle-anim {
+  animation: btn-underline 2s ease-in-out 1;
+  animation-fill-mode: forwards;
+}
+@keyframes btn-underline {
+  100% {
+    width: 100px;
+  }
+}

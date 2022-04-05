@@ -1,7 +1,13 @@
-import { Component, ElementRef, OnInit, Directive } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Directive,
+  ViewChild,
+  Renderer2,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { SpotsService } from 'src/app/services/spots.service';
 import { RootState } from 'src/app/store/store';
 
 import { Spot } from 'src/models/spot';
@@ -15,15 +21,14 @@ export class FindSpotsComponent implements OnInit {
   @Directive({
     selector: '[appHighlight]',
   })
+  @ViewChild('itemTypeBtn')
+  ItemBtn: ElementRef;
+  @ViewChild('test') el: ElementRef;
   public filteredList: Array<Spot> = [];
   public spotTypesList: Array<String> = [];
   public spotsFromStore$: Observable<Spot[]>;
 
-  constructor(
-    private spotService: SpotsService,
-    private el: ElementRef,
-    private store: Store<RootState>
-  ) {
+  constructor(private store: Store<RootState>, private renderer: Renderer2) {
     this.spotsFromStore$ = this.store.select((state) => {
       return Object.values(state.spots.entities);
     });
@@ -39,9 +44,21 @@ export class FindSpotsComponent implements OnInit {
     });
   }
   public showList(e: any) {
+    //will add spot to the list by type
     this.spotsFromStore$.subscribe((data) => {
       this.filteredList = data.filter((spot) => spot.type === e);
     });
+
+    //css feature
+    if (
+      this.ItemBtn.nativeElement.className === 'item-toogle item-toogle-anim'
+    ) {
+      this.renderer.removeClass(this.ItemBtn.nativeElement, 'item-toogle-anim');
+    }
+    //need to setTimeOut to restart the effect
+    setTimeout(() => {
+      this.renderer.addClass(this.ItemBtn.nativeElement, 'item-toogle-anim');
+    }, 100);
   }
 
   ngOnInit(): void {

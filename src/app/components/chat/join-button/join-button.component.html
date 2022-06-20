@@ -1,2 +1,2 @@
-<button (click)="createRoomComponent()">Join Chat</button>
+<button *ngIf="!chatActive" (click)="createRoomComponent()" class="join-chat-button">Join Chat</button>
 <ng-template appDinamic></ng-template>

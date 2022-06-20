@@ -11,7 +11,7 @@ import { environment } from '@env/environment';
   providedIn: 'root',
 })
 export class SocketService {
-  public socket = io(environment.backendURL);
+  public socket = io("https://gorip-back.herokuapp.com");
   public spots$ = this.store.select((state) => state.spots);
   public spotId: number;
 

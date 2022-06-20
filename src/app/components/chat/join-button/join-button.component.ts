@@ -15,9 +15,12 @@ import { ChatRoomComponent } from '../chat-room/chat-room.component';
 export class JoinButtonComponent implements OnInit {
   @ViewChild(DinamicDirective) public hostChat: DinamicDirective;
 
+  public chatActive: boolean = false;
+
   constructor(private componentFactoryRes: ComponentFactoryResolver) {}
 
   public createRoomComponent() {
+    this.chatActive = !this.chatActive
     const component =
       this.componentFactoryRes.resolveComponentFactory(ChatRoomComponent);
     this.hostChat.viewContainerRef.createComponent(component);

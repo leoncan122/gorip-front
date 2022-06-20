@@ -17,13 +17,41 @@
   display: grid;
   overflow: scroll;
 }
-p,
-h3 {
-  border: 2px solid orangered;
-  padding: 1%;
+p{
+  border: 1px solid orangered;
+  padding: 2% 4%;
+  border-radius: 5px;
+
 }
 img {
   max-width: 75%;
   margin-top: 25px;
   justify-self: center;
 }
+span {
+  color: orangered;
+  display: block;
+}
+.modal-close-button{
+  position: absolute;
+  padding: 3px 7px;
+  background-color: orangered;
+  color: black;
+  right: 0;
+  top: 0;
+  font-weight: bold;
+  border: none;
+  text-align: center;
+}
+.chat-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+@media (min-width: 950px) {
+  #spot-information {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+

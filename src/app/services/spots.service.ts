@@ -21,7 +21,7 @@ export interface Result {
   providedIn: 'root',
 })
 export class SpotsService {
-  url = `${environment.backendURL}/api/spots`;
+  url = `https://gorip-back.herokuapp.com/api/spots`;
   result: Result;
 
   public addressInfo: info;

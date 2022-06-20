@@ -1,10 +1,10 @@
 <div class="wrap-nav">
   <div class="nav__logo">
-    <h1><span class="letterg">G</span>o<span class="letterg">R</span>ip</h1>
+    <h1><span class="letterG">G</span>o<span class="letterR">R</span><span class="letterI">i</span>p</h1>
   </div>
   <button routerLink="/login" class="nav__button">login</button>
   <app-add-spot-btn></app-add-spot-btn>
-  <app-refresh></app-refresh>
+  <!-- <app-refresh></app-refresh> -->
 
   <button
     *ngIf="(userSubscription$ | async)?.authenticated"

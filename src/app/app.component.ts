@@ -14,7 +14,7 @@ import { RootState } from './store/store';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = 'Discover the spots near you';
+  title: 'Discover the spots near you';
   availableSpots: Observable<Spot[]>;
   currentLocation: Observable<number[]>;
 

@@ -57,7 +57,6 @@ export class MapComponent implements OnInit, OnDestroy {
       () => console.log('takeUntil completed')
     );
 
-    //this.mapService.realPosition();
     this.store
       .select((state) => state.spots.entities)
       .subscribe((data) => {

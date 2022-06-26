@@ -35,7 +35,9 @@ export class HomeComponent implements OnInit {
         this.x = data;
       });
 
-    this.city = this.store.select((state) => state.localization.whereami.city);
+    this.city = this.store.select((state) => {
+      return state.localization.whereami.city;
+    });
   }
   public createCompo() {
     const component = this.componentFactoryRes.resolveComponentFactory(

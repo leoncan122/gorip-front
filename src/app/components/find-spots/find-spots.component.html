@@ -1,7 +1,7 @@
-<div *ngIf="spotTypesList">
+<section id="spots-index" *ngIf="spotTypesList">
   <ul class="list-spots">
     <h1 class="list-spots-heading">Spots</h1>
-    <h3>Here you can see the spots orderded by type. Click below to see it.</h3>
+    <p>Here you can see the spots orderded by type. Click below to see it.</p>
     <li #test *ngFor="let name of spotTypesList" (click)="showList(name)">
       {{ name }}
     </li>
@@ -11,4 +11,4 @@
       <li *ngFor="let place of filteredList">{{ place.address }}</li>
     </ul>
   </ul>
-</div>
+</section>

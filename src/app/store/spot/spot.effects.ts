@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { of } from 'rxjs';
 import {
   mergeMap,
   map,
@@ -30,6 +29,7 @@ export class SpotEffects {
   public spotsAroundMe$ = createEffect(() => {
     return this.action$.pipe(
       ofType(spotActions.setSpots),
+      tap(console.log),
       exhaustMap((action) =>
         this.spotService
           .getSpotsAroundMe(action.city)

@@ -17,14 +17,20 @@
     align-items: center;
     width: 80%;
     height: 60vh;
+    background-color: orangered;
     padding: 3%;
     border: 3px solid white;
-    box-shadow: inset 0px 22px 25px 0px, 0px -4px 10px 9px;
+    // box-shadow: 0px 22px 25px 0px, 0px -4px 10px 9px;
     justify-content: space-between;
-    & > input {
+    & > label > input {
       width: 70%;
       height: 40px;
       border-radius: 5px;
+      border: 1px solid white;
+    }
+    & > label > input:hover {
+      border-color: rgb(81, 142, 255);
+      transition: all 0.5s ease-in;
     }
     & > label {
       margin-top: 5px;

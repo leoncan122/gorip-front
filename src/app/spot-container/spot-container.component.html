@@ -1,4 +1,4 @@
-<section *ngIf="spotContainerAble" id="container-spot">
+<ng-container *ngIf="spotContainerAble" id="container-spot">
   <div id="spot-information">
     <img [src]="imagePath" />
     <div>
@@ -14,16 +14,16 @@
         Want to chat real time with people in this Spot?
         <app-join-button></app-join-button>
       </p>
-      <p> {{ peopleInSpot.length }} Skaters are chating now.
+      <p>
+        {{ peopleInSpot.length }} Skaters are chating now.
         <ng-container>
           <ul *ngFor="let item of peopleInSpot">
             <li>{{ item }}</li>
           </ul>
         </ng-container>
       </p>
-     
+
       <button (click)="clearSpotObject()" class="modal-close-button">X</button>
     </div>
-    
   </div>
-</section>
+</ng-container>

@@ -6,39 +6,51 @@
     [formGroup]="form"
     (ngSubmit)="onSubmit(); resetForm()"
   >
-    <label for="address">Address</label>
-    <input name="address" formControlName="address" readonly />
+    <label for="address"
+      >Address
+      <input name="address" formControlName="address" readonly />
+    </label>
 
-    <label for="city">City</label>
-    <input name="city" formControlName="city" readonly />
+    <label for="city"
+      >City
+      <input name="city" formControlName="city" readonly />
+    </label>
 
-    <label for="postalCode">Postal Code</label>
-    <input name="postalCode" formControlName="postal_code" readonly />
+    <label for="postalCode"
+      >Postal Code
+      <input name="postalCode" formControlName="postal_code" readonly />
+    </label>
 
-    <label for="type">Select type of spot</label>
-    <select class="form-control" formControlName="type" name="type">
-      <option value="handrail">handrail</option>
-      <option value="ledge">ledge</option>
-      <option value="stairs">stairs</option>
-      <option value="skatepark">skatepark</option>
-      <option value="flatbar">flatbar</option>
-    </select>
+    <label for="type"
+      >Select type of spot
+      <select class="form-control" formControlName="type" name="type">
+        <option value="handrail">handrail</option>
+        <option value="ledge">ledge</option>
+        <option value="stairs">stairs</option>
+        <option value="skatepark">skatepark</option>
+        <option value="flatbar">flatbar</option>
+      </select>
+    </label>
 
-    <label for="description">Description</label>
-    <input
-      type="text"
-      name="description"
-      placeholder="description"
-      formControlName="description"
-    />
+    <label for="description"
+      >Description
+      <input
+        type="text"
+        name="description"
+        placeholder="description"
+        formControlName="description"
+      />
+    </label>
 
-    <label for="photo">Upload photo</label>
-    <input
-      type="file"
-      name="photo"
-      accept="image/*,capture=camera"
-      (change)="onFileSelected($event)"
-    />
+    <label for="photo"
+      >Upload photo
+      <input
+        type="file"
+        name="photo"
+        accept="image/*,capture=camera"
+        (change)="onFileSelected($event)"
+      />
+    </label>
 
     <!-- <input
       type="file"

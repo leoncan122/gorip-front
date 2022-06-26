@@ -78,12 +78,13 @@ export class SpotsService {
       const data = await res.json();
       if (data) {
         //this.store.dispatch(setSpots({ pc: data.features[1].text }));
+        console.log(data);
         this.store.dispatch(
           information({
             info: {
-              pc: data?.features[1].text,
+              pc: data?.features[2].text,
               address: data?.features[0].place_name,
-              city: data?.features[2].text,
+              city: data?.features[4].place_name,
             },
           })
         );

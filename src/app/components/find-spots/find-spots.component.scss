@@ -1,10 +1,14 @@
-.list-spots-heading {
+#spots-index {
+  grid-column: 2/3;
+  grid-row: 3;
 }
 .list-spots {
   list-style: none;
   line-height: 2rem;
+  padding: 0 20px;
   & > li {
     cursor: pointer;
+    color: orangered;
   }
 }
 .item-toogle {
@@ -14,7 +18,7 @@
   border-radius: 4px;
 }
 .item-toogle-anim {
-  animation: btn-underline 2s ease-in-out 1;
+  animation: btn-underline 1s ease-out;
   animation-fill-mode: forwards;
 }
 @keyframes btn-underline {

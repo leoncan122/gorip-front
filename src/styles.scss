@@ -3,7 +3,8 @@
 /* You can add global styles to this file, and also import other style files */
 $font-stack: normal normal bold 15px Helvetica, sans-serif;
 $bgr-color: black;
-body {
+body,
+* {
   font: $font-stack;
   color: white;
   box-sizing: border-box;
@@ -11,6 +12,9 @@ body {
   padding: 0;
   // width: 100%;
   // display: grid;
+}
+h1 {
+  font-size: 35px;
 }
 .app-nav {
   @extend %nav;

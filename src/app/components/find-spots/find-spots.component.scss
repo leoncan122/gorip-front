@@ -1,11 +1,13 @@
 #spots-index {
-  grid-column: 2/3;
-  grid-row: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  padding: 0 5%;
 }
 .list-spots {
+  margin-top: 5%;
   list-style: none;
   line-height: 2rem;
-  padding: 0 20px;
   & > li {
     cursor: pointer;
     color: orangered;

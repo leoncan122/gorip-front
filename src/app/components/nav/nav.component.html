@@ -1,4 +1,4 @@
-<div class="wrap-nav">
+<header class="wrap-nav">
   <div class="nav__logo">
     <h1>
       <span class="letterG">G</span>o<span class="letterR">R</span
@@ -6,15 +6,17 @@
     </h1>
   </div>
 
-  <app-add-spot-btn></app-add-spot-btn>
+  <nav>
+    <app-add-spot-btn></app-add-spot-btn>
 
-  <button routerLink="/login" class="nav__button">login</button>
-  <!-- <app-refresh></app-refresh> -->
+    <button routerLink="/login" class="nav__button">login</button>
+    <!-- <app-refresh></app-refresh> -->
 
-  <button
-    *ngIf="(userSubscription$ | async)?.authenticated"
-    class="nav__button"
-  >
-    Me
-  </button>
-</div>
+    <button
+      *ngIf="(userSubscription$ | async)?.authenticated"
+      class="nav__button"
+    >
+      Me
+    </button>
+  </nav>
+</header>

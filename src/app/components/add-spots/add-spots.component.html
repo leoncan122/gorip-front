@@ -63,11 +63,13 @@
       {{ filename || "File not uploaded yet" }}
       <button class="save-photo" (click)="fileUpload.click()">Attach</button>
     </div> -->
-    <div class="file-upload">
+    <!-- <div class="file-upload">
       {{ filename || "File not uploaded yet" }}
-    </div>
+    </div> -->
 
-    <button type="submit" [disabled]="!form.valid">create</button>
-    <button (click)="resetForm()">back</button>
+    <div class="button-container">
+      <button type="submit" [disabled]="!form.valid">create</button>
+      <button (click)="resetForm()">back</button>
+    </div>
   </form>
 </div>

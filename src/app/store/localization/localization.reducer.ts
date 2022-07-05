@@ -11,10 +11,9 @@ export const localizationReducer = createReducer(
   on(localization, (state) => {
     return { ...state };
   }),
-  on(updateCoordinates, (state, { coord }) => ({
-    ...state,
-    localization: coord,
-  })),
+  on(updateCoordinates, (state, { coord }) => {
+    return { ...state, localization: coord };
+  }),
   on(information, (state, { info }) => {
     return { ...state, whereami: info };
   })

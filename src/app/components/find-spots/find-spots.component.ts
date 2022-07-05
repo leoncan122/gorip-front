@@ -27,9 +27,11 @@ export class FindSpotsComponent implements OnInit {
   public filteredList: Array<Spot> = [];
   public spotTypesList: Array<String> = [];
   public spotsFromStore$: Observable<Spot[]>;
+  public currentCity: string;
 
   constructor(private store: Store<RootState>, private renderer: Renderer2) {
     this.spotsFromStore$ = this.store.select((state) => {
+      this.currentCity = state.localization.whereami.city.split(',')[0];
       return Object.values(state.spots.entities);
     });
   }

@@ -1,9 +1,16 @@
-@import "../login/login.component.scss";
-.auth-container {
+@import "../login/login.component";
+
+.section {
   @extend %auth-container;
 }
+.sign-up-container {
+  @extend %login-container;
+}
+#logo-login {
+  @extend %logo-login;
+}
 .form-container {
-  display: grid;
+  @extend %form-container;
 }
 form {
   @extend %form;

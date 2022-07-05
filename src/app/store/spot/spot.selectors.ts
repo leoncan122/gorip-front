@@ -1,7 +1,7 @@
 import { createSelector } from '@ngrx/store';
 import { Spot } from 'src/models/spot';
 import { RootState } from '../store';
-import { Spots, spotState } from './spot.state';
+import { Spots } from './spot.state';
 
 export const selectAll = (state: RootState): Spot[] => {
   return Object.values(state.spots.entities);

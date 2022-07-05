@@ -1,5 +1,3 @@
-<!-- <button class="nav__button" (click)="getFormInfo()">Add spot</button> -->
-
 <div class="form_container" *ngIf="showForm">
   <form
     #myForm="ngForm"
@@ -14,11 +12,6 @@
     <label for="city"
       >City
       <input name="city" formControlName="city" readonly />
-    </label>
-
-    <label for="postalCode"
-      >Postal Code
-      <input name="postalCode" formControlName="postal_code" readonly />
     </label>
 
     <label for="type"
@@ -37,7 +30,7 @@
       <input
         type="text"
         name="description"
-        placeholder="description"
+        placeholder="eg. the place is empty of people"
         formControlName="description"
       />
     </label>
@@ -48,24 +41,9 @@
         type="file"
         name="photo"
         accept="image/*,capture=camera"
-        (change)="onFileSelected($event)"
+        (change)="handleInputImage($event)"
       />
     </label>
-
-    <!-- <input
-      type="file"
-      name="imagen"
-      class="input-file"
-      (change)="onFileSelected($event)"
-      #fileUpload
-    />
-    <div class="file-upload">
-      {{ filename || "File not uploaded yet" }}
-      <button class="save-photo" (click)="fileUpload.click()">Attach</button>
-    </div> -->
-    <!-- <div class="file-upload">
-      {{ filename || "File not uploaded yet" }}
-    </div> -->
 
     <div class="button-container">
       <button type="submit" [disabled]="!form.valid">create</button>

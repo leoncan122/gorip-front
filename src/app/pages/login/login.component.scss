@@ -1,4 +1,5 @@
 @import "../../../devices.scss";
+@import url("https://fonts.googleapis.com/css2?family=Passion+One&display=swap");
 
 %auth-container {
   height: 100vh;
@@ -13,63 +14,67 @@
     #fa923cc7 235deg,
     black 335deg
   );
-  // background: radial-gradient(circle, rgb(0 0 0 / 93%) 0%, #ff6800 100%);
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: center;
-  display: grid;
-  grid-template-rows: 0.5fr 2fr 1fr;
-  // grid-template-rows: 0.3fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   & p {
     text-align: center;
   }
 }
-.login-container {
-  @extend %auth-container;
-}
-#logo-login {
+%logo-login {
   background-color: transparent;
-  font-family: sansation;
   color: transparent;
-  // color: #ff9469da;
   font-style: italic;
   z-index: 10;
   display: grid;
   place-content: center;
-  // color: #ff9469;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.6) !important;
   perspective: 100px;
   animation: neon 4s ease-in-out infinite;
   animation-direction: alternate-reverse;
   & > span {
+    font-family: "Passion One", cursive;
     cursor: pointer;
     align-self: flex-end;
+    font-size: 75px;
+    letter-spacing: 3px;
+    color: rgb(81, 142, 255);
   }
 }
-#logo-login span {
-  font-size: 55px;
+%login-container {
+  width: 90%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  @media (min-width: 768px) {
+    width: 40%;
+  }
 }
-
-.form-container {
+%form-container {
   display: grid;
-  gap: 100px;
+  gap: 70px;
+  width: 90%;
   & > p {
     display: grid;
     grid-template-columns: 1fr;
     color: white;
     font-weight: 500;
     font-size: 18px;
+    & > span {
+      color: orangered;
+    }
   }
 }
 %form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  height: 30vh;
-  padding: 3%;
   justify-content: space-evenly;
-  justify-self: center;
   & label {
     width: 100%;
     padding: 10px 0;
@@ -77,11 +82,28 @@
   & > label > input {
     width: 100%;
     height: 40px;
-    border-radius: 5px;
-    border: 1px solid orangered;
+    border: none;
+    border-bottom: 1px solid white;
     background-color: transparent;
-    padding: 0% 3%;
+    padding: 0;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder,
+    -moz::placeholder,
+    -ms::placeholder {
+      vertical-align: baseline;
+      color: white;
+    }
+    &:focus::placeholder {
+      transform: translateY(-15px) translateX(-20px) scale(0.9);
+      transition: transform 0.5s linear;
+    }
+    &::after {
+      color: red;
+    }
   }
+
   & > button {
     margin-top: 20px;
     padding: 1% 5%;
@@ -93,12 +115,37 @@
     font-weight: 400;
   }
   & > button:hover {
-    background-color: transparent;
+    background-color: black;
     color: orangered;
   }
 }
+section {
+  @extend %auth-container;
+}
+
+.login-container {
+  @extend %login-container;
+}
+
+#logo-login {
+  @extend %logo-login;
+}
+
+.form-container {
+  @extend %form-container;
+}
+
 form {
   @extend %form;
+}
+span .sing-up-link {
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    width: 40%;
+  }
 }
 
 @keyframes neon {

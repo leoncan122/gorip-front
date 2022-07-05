@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { io } from 'socket.io-client';
-import { selectCoordinates } from '../store/localization/localization.selectors';
 import { RootState } from '../store/store';
 import { SpotsService } from './spots.service';
 import { environment } from '@env/environment';
@@ -11,7 +10,7 @@ import { environment } from '@env/environment';
   providedIn: 'root',
 })
 export class SocketService {
-  public socket = io("https://gorip-back.herokuapp.com");
+  public socket = io(environment.backendURL);
   public spots$ = this.store.select((state) => state.spots);
   public spotId: number;
 

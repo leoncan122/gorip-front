@@ -79,10 +79,11 @@ textarea {
   font-weight: bold;
 }
 .chat-open-fixed {
-  position:fixed;
+  position: fixed;
   top: 50%;
   right: 2%;
   background-color: white;
+  color: #000;
   border-radius: 55px;
   display: flex;
   align-items: center;

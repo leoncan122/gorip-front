@@ -12,6 +12,7 @@ import {
 } from '../store/localization/localization.selectors';
 import { Spots } from '../store/spot/spot.state';
 import { latLong } from '../spot-container/spot-container.component';
+import { setSpots } from '../store/spot/spot.action';
 export interface Result {
   lat: number;
   long: number;
@@ -21,18 +22,16 @@ export interface Result {
   providedIn: 'root',
 })
 export class SpotsService {
-  url = `https://gorip-back.herokuapp.com/api/spots`;
+  url = `${environment.backendURL}/api/spots`;
   result: Result;
 
   public addressInfo: info;
+  public city: Observable<string>;
 
   constructor(private http: HttpClient, private store: Store<RootState>) {
-    this.store.select(selectCoordinates).subscribe((data) => {
-      this.coordToAddress(data[1], data[0]);
+    this.city = this.store.select((state) => {
+      return state.localization.whereami.city;
     });
-    this.store
-      .select(selectAddressInfo)
-      .subscribe((data) => (this.addressInfo = data));
   }
 
   addSpot(spot: Spot | any): Observable<Spot> {
@@ -77,8 +76,12 @@ export class SpotsService {
       );
       const data = await res.json();
       if (data) {
-        //this.store.dispatch(setSpots({ pc: data.features[1].text }));
-        console.log(data);
+        // this.city.subscribe((city) => {
+        //   console.log('city');
+        //   if (city.length > 0) {
+        //     this.store.dispatch(setSpots({ city }));
+        //   }
+        // });
         this.store.dispatch(
           information({
             info: {

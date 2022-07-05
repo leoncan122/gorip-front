@@ -1,7 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { info } from 'src/app/store/localization/localization.action';
+import {
+  info,
+  updateCoordinates,
+} from 'src/app/store/localization/localization.action';
+
 import { SpotsService } from '../../services/spots.service';
 import { Observable, Subject } from 'rxjs';
 import { RootState } from 'src/app/store/store';
@@ -21,9 +25,9 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
     city: '',
   };
   public errorAddSpot$: Observable<boolean>;
-  public showForm = false;
-  public onDestroy$ = new Subject();
-  public filename = '';
+  public showForm: Boolean;
+  public onDestroy$ = new Subject<void>();
+  public photoFile: File;
   public form: FormGroup;
   public uploadData = new FormData();
 
@@ -42,6 +46,7 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
       lat: [''],
       long: [''],
       city: ['', [Validators.required]],
+      file: [null, [Validators.required]],
     });
     this.store
       .select((state) => {
@@ -57,22 +62,12 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
         },
         (err) => console.log(err)
       );
-    this.errorAddSpot$ = this.store.select((state) => state.spots.failure);
+    // this.errorAddSpot$ = this.store.select((state) => state.spots.failure);
   }
-  public onFileSelected(event: any) {
-    const file = event.target.files[0];
-    const fileToBase64 = async (file: any) =>
-      new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => resolve(reader.result);
-        reader.onerror = (e) => reject(e);
-      });
-    if (file) {
-      fileToBase64(file)
-        .then((base64: any) => this.form.get('photo')?.setValue(base64))
-        .catch((err) => (this.filename = 'Something was wrong, retry'));
-    }
+
+  public handleInputImage(event: any) {
+    this.photoFile = <File>event.target.files[0];
+    this.form.get('file')?.setValue(this.photoFile);
   }
   public getFormInfo = () => {
     this.showForm = true;
@@ -87,6 +82,9 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
       console.log(error);
     }
   };
+  public resetForm() {
+    this.showForm = false;
+  }
   public onSubmit(): void {
     this.uploadData.append('photo', this.form.get('photo')?.value);
     this.uploadData.append('address', this.form.get('address')?.value);
@@ -95,19 +93,18 @@ export class AddSpotsComponent implements OnInit, OnDestroy {
     this.uploadData.append('city', this.form.get('city')?.value);
     this.uploadData.append('lat', this.form.get('lat')?.value);
     this.uploadData.append('long', this.form.get('long')?.value);
-    // this.uploadData = this.form.getRawValue();
-    // console.log(this.form.getRawValue());
+    this.uploadData.append('file', this.photoFile);
 
+    // this.uploadData = this.form.getRawValue();
+    this.resetForm();
     this.spotService
       .addSpot(this.uploadData)
       .subscribe((data) => this.store.dispatch(addSpotSuccess({ spot: data })));
   }
-  public resetForm() {
-    this.showForm = false;
-  }
 
   ngOnDestroy() {
-    //this.onDestroy$.next();
+    console.log('component destroyed');
+    this.onDestroy$.next();
   }
   ngOnInit(): void {
     this.getFormInfo();

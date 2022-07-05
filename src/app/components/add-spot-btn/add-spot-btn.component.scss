@@ -3,6 +3,10 @@
 
 .nav__button {
   @extend %primary_btn;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     @extend %hoverButton;
   }

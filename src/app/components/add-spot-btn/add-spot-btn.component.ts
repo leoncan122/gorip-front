@@ -1,6 +1,7 @@
 import {
   Component,
   ComponentFactoryResolver,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -14,6 +15,7 @@ import { AddSpotsComponent } from '../add-spots/add-spots.component';
 })
 export class AddSpotBtnComponent implements OnInit {
   @ViewChild(DinamicDirective) public dinamicHost: DinamicDirective;
+
   constructor(private componentFactoryRes: ComponentFactoryResolver) {}
 
   public createCompo() {
@@ -22,5 +24,6 @@ export class AddSpotBtnComponent implements OnInit {
     this.dinamicHost.viewContainerRef.clear();
     this.dinamicHost.viewContainerRef.createComponent(component);
   }
+
   ngOnInit(): void {}
 }

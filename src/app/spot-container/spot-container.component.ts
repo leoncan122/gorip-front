@@ -8,6 +8,7 @@ import { SpotsService } from '../services/spots.service';
 import { selectSpotById } from '../store/spot/spot.action';
 import { spotValue } from '../store/spot/spot.selectors';
 import { RootState } from '../store/store';
+
 export interface latLong {
   lat: number;
   lon: number;
@@ -28,8 +29,7 @@ export class SpotContainerComponent implements OnInit {
     private store: Store<RootState>,
     private socketService: SocketService,
     private spotService: SpotsService,
-    private domSanitizer: DomSanitizer,
-    private router: Router
+    private domSanitizer: DomSanitizer
   ) {}
   public clearSpotObject(): void {
     //passing id : 0 , the reducer will empty the  selected's array
@@ -39,7 +39,6 @@ export class SpotContainerComponent implements OnInit {
     this.store.dispatch(selectSpotById({ id: 0 }));
     this.spotContainerAble = false;
     this.peopleInSpot = [];
-    //this.router.navigate(['/']);
   }
   public usersInSpot(): void {
     this.sub = this.socketService
@@ -61,19 +60,14 @@ export class SpotContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.select(spotValue).subscribe((data: any) => {
-      // console.log(data);
+      console.log(data, 'spotValue');
       if (!data) return;
       this.socketService.joinRoom(data._id);
-
       this.spotContainerAble = true;
       this.spotObject = data;
-      const imgID = data?.photo.split('/')[5].split('.')[0];
+      const imgID = data?.photo.split('/')[3];
       this.spotService.getSpotImage(imgID).subscribe((data) => {
-        this.imagePath = 'data:image/jpg;base64,' + data.photo;
-
-        // this.imagePath = this.domSanitizer.bypassSecurityTrustResourceUrl(
-        //   'data:image/jpg;base64,' + data.photo
-        // );
+        this.imagePath = `data:image/jpeg;base64,${data.b64}`;
       });
     });
     this.usersInSpot();

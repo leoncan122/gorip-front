@@ -7,4 +7,5 @@ export class Spot {
   lat: number;
   long: number;
   photo: String;
+  file: File;
 }

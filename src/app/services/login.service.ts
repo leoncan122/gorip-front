@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { environment } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private loginURL: string = 'https://gorip-back.herokuapp.com/api/user/login';
-  private signupURL: string =
-    'https://gorip-back.herokuapp.com/api/user/signup';
+  private loginURL: string = `${environment.backendURL}/api/user/login`;
+  private signupURL: string = `${environment.backendURL}/api/user/signup`;
 
   constructor(private http: HttpClient) {}
 

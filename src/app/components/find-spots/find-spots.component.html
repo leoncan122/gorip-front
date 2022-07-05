@@ -1,15 +1,20 @@
 <section id="spots-index" *ngIf="spotTypesList">
-  <h1 class="list-spots-heading">Spots</h1>
-  <p>Here you can see the spots orderded by type. Click below to see it.</p>
+  <h1 class="list-spots-heading">
+    Best Spots To Skate in <span>{{ currentCity }}</span>
+  </h1>
+  <p>
+    Here you can see the spots in zone orderded by type. Click below to see it.
+  </p>
 
   <ul class="list-spots">
     <li #test *ngFor="let name of spotTypesList" (click)="showList(name)">
       {{ name }}
     </li>
     <div #itemTypeBtn class="item-toogle"></div>
-
-    <ul *ngIf="filteredList">
-      <li *ngFor="let place of filteredList">{{ place.address }}</li>
+    <ul *ngIf="filteredList" class="list-items-spots">
+      <li *ngFor="let place of filteredList">
+        {{ place.address.split(",")[0] }}
+      </li>
     </ul>
   </ul>
 </section>

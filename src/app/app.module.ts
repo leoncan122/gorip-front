@@ -10,14 +10,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
 import { NavComponent } from './components/nav/nav.component';
 import { FindSpotsComponent } from './components/find-spots/find-spots.component';
-import { ResultsComponent } from './components/results/results.component';
 import { MapComponent } from './components/map/map.component';
 import { AddSpotsComponent } from './components/add-spots/add-spots.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { HomeComponent } from './pages/home/home.component';
-import { RefreshComponent } from './components/refresh/refresh.component';
 import { SpotEffects } from './store/spot/spot.effects';
 import { SpotContainerComponent } from './spot-container/spot-container.component';
 import { AuthEffects } from './store/auth/auth.effects';
@@ -29,6 +27,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { reducers, RootState } from './store/store';
 import { localStorageSync } from 'ngrx-store-localstorage';
+import { POSITION_OPTIONS } from '@ng-web-apis/geolocation';
 
 export function localStorageSyncReducer(
   reducer: ActionReducer<RootState>
@@ -47,14 +46,12 @@ export const metaReducers: Array<MetaReducer<RootState, any>> = [
     AppComponent,
     NavComponent,
     FindSpotsComponent,
-    ResultsComponent,
     MapComponent,
     AddSpotsComponent,
     FooterComponent,
     LoginComponent,
     SignUpComponent,
     HomeComponent,
-    RefreshComponent,
     SpotContainerComponent,
     DinamicDirective,
     AddSpotBtnComponent,
@@ -76,6 +73,10 @@ export const metaReducers: Array<MetaReducer<RootState, any>> = [
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true,
+    },
+    {
+      provide: POSITION_OPTIONS,
+      useValue: { enableHighAccuracy: true, timeout: 3000, maximumAge: 5000 },
     },
   ],
   bootstrap: [AppComponent],

@@ -5,21 +5,23 @@
     <div class="form-container">
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <label for="email">
-          <input type="text" formControlName="email" placeholder="email" />
+          <input type="text" formControlName="email" placeholder="E-mail" />
         </label>
         <label for="password">
           <input
             type="text"
-            formControlName="password"
+            formControlName="Password"
             placeholder="password"
           />
         </label>
-        <button type="submit" [disabled]="!loginForm.valid">login</button>
+        <button type="submit" [disabled]="!loginForm.valid">Sign in</button>
         <p *ngIf="error">{{ error }}</p>
       </form>
       <p>
         Already not have an account?
-        <span routerLink="/signup">Sign Up</span>
+        <span class="sing-up-link" routerLink="/signup"
+          >Join our community</span
+        >
       </p>
       <!-- <button (click)="testToken()">Send Token</button> -->
     </div>

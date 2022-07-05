@@ -22,19 +22,13 @@ import { RootState } from 'src/app/store/store';
 })
 export class HomeComponent implements OnInit {
   @ViewChild(DinamicDirective) public dinamicHost: DinamicDirective;
-  public x: number[] = [0, 0];
   public city: Observable<string>;
   constructor(
     private store: Store<RootState>,
     private spotService: SpotsService,
-    private componentFactoryRes: ComponentFactoryResolver
+    private componentFactoryRes: ComponentFactoryResolver,
+    private spotsService: SpotsService
   ) {
-    this.store
-      .select((state) => state.localization.localization)
-      .subscribe((data) => {
-        this.x = data;
-      });
-
     this.city = this.store.select((state) => {
       return state.localization.whereami.city;
     });
@@ -50,12 +44,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //this dispatch set the coordinates on the store, for first tom implement in all the app
-    navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition(({ coords }) => {
       this.store.dispatch(
         updateCoordinates({
-          coord: [position.coords.latitude, position.coords.longitude],
+          coord: [coords.latitude, coords.longitude],
         })
       );
+      this.spotsService.coordToAddress(coords.longitude, coords.latitude);
     });
     // this.store
     //   .select((state) => state.spots.entities)

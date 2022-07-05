@@ -1,15 +1,32 @@
-<div class="auth-container">
-  <header routerLink="/">GoRip</header>
-  <div class="form-container">
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-      <input type="text" formControlName="email" placeholder="email" />
-      <input type="text" formControlName="name" placeholder="name" />
-      <input type="text" formControlName="password" placeholder="password" />
-      <button type="submit" [disabled]="!signUpForm.valid">signup</button>
-    </form>
-    <p>
-      Already registered?
-      <span routerLink="/login">Log in</span>
-    </p>
+<section class="auth-container">
+  <div class="sign-up-container">
+    <div id="logo-login"><span routerLink="/">GoRip</span></div>
+
+    <div class="form-container">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <label for="email">
+          <input type="text" formControlName="email" placeholder="Email" />
+        </label>
+
+        <label for="name">
+          <input type="text" formControlName="name" placeholder="Name" />
+        </label>
+
+        <label for="password">
+          <input
+            type="text"
+            formControlName="password"
+            placeholder="Password"
+          />
+        </label>
+
+        <button type="submit" [disabled]="!signUpForm.valid">Sign Up</button>
+        <!-- <p *ngIf="error">{{ error }}</p> -->
+      </form>
+      <p>
+        Already registered?
+        <span routerLink="/login">Log in</span>
+      </p>
+    </div>
   </div>
-</div>
+</section>

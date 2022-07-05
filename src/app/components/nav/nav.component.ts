@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  NgModule,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { userState } from 'src/app/store/auth/auth.state';
@@ -11,10 +18,9 @@ import { RootState } from 'src/app/store/store';
 })
 export class NavComponent implements OnInit {
   public userSubscription$: Observable<userState>;
+  constructor(private store: Store<RootState>) {}
 
-  constructor(private store: Store<RootState>) {
+  ngOnInit(): void {
     this.userSubscription$ = this.store.select((state) => state.user);
   }
-
-  ngOnInit(): void {}
 }
